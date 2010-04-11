@@ -16,5 +16,6 @@ When /^I install the latest gem$/ do
 end
 
 Then /^I should have cucumber\-puppet\-gen in my PATH$/ do
-  fail unless system("which cucumber-puppet-gen")
+  ENV['PATH'] += ":#{ENV['HOME']}/.gem/ruby/1.8/bin"
+  fail unless system("which cucumber-puppet-gen > /dev/null")
 end
