@@ -1,7 +1,7 @@
 require 'puppet'
 require 'puppet/network/client'
 
-class PuppetMock
+class CucumberPuppet
   # object setup
   attr_accessor :confdir, :manifest
 
@@ -30,7 +30,7 @@ class PuppetMock
     Puppet::Util::Log.level = :debug
   end
 
-  def set_klass(klass)
+  def klass=(klass)
     @klass = klass.to_a
   end
 
@@ -73,5 +73,5 @@ class PuppetMock
 end
 
 World do
-  PuppetMock.new
+  CucumberPuppet.new
 end
