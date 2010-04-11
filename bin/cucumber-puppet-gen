@@ -22,7 +22,6 @@ module CucumberPuppetGenerators
     first_argument :name, :required => true, :desc => "Project name"
 
     file '.gitignore', '.gitignore'
-    file '.bzrignore', '.bzrignore'
     
     glob! 
 

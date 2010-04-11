@@ -6,7 +6,8 @@ Gem::Specification.new do |s|
   s.description = "cucumber-puppet allows you writing behavioural tests for your puppet manifest"
   s.email = "sturm@nistu.de"
   s.executables = ["cucumber-puppet-gen"]
-  s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb" ]
+  s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb",
+    "lib/generators/project/.gitignore" ]
   s.homepage = "http://nistude.github.com/cucumber-puppet/"
   s.rubyforge_project = "cucumber-puppet"
   s.summary = "manifest testing for Puppet using Cucumber"
