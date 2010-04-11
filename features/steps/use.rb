@@ -5,3 +5,7 @@ end
 Then /^a feature file for "([^\"]*)" in module "([^\"]*)" should exist$/ do |feature, mod|
   fail unless File.exists?("#{@project}/features/modules/#{mod}/#{feature}.feature")
 end
+
+Then /^the "([^\"]*)" feature for module "([^\"]*)" should exit cleanly$/ do |feature, mod|
+  fail unless system("cd #{@project} && ./bin/cucumber-puppet features/modules/#{mod}/#{feature}.feature")
+end
