@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+# attempt to load up the bundled gems, and give an explanatory message if we
+# cannot
+begin
+  require File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'environment')
+rescue LoadError
+  puts "You need to bundle gems into your project before you can run this."
+  puts
+  puts "To do this, make sure the 'bundler' gem is installed, and run:"
+  puts
+  puts "  $ gem bundle"
+  puts
+  exit 1
+end
+require 'templater'
+
+module CucumberPuppetGenerators
+
+  extend Templater::Manifold
+
+  # feature generator
+  class FeatureGenerator < Templater::Generator
+    def self.source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
+    end
+
+    desc <<-DESC
+      Generate a cucumber feature. Takes two arguments:
+        ./bin/cucumber-puppet-gen feature <module-name> <feature-name>
+    DESC
+
+    first_argument :mod, :required => true, :desc => "Module name"
+    second_argument :feature, :required => true, :desc => "Feature name"
+
+    template :feature do |template|
+      template.source = "%feature_name%.feature"
+      template.destination = "features/modules/#{mod}/#{feature}.feature"
+    end
+  end
+
+  desc "Generators for a cucumber-puppet feature"
+  add :feature, FeatureGenerator
+
+end
+
+CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', '0.0', ARGV
