@@ -7,8 +7,12 @@ Gem::Specification.new do |s|
   s.email = "sturm@nistu.de"
   s.executables = ["cucumber-puppet-gen"]
   s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb",
-    "lib/generators/project/.gitignore" ]
+    "lib/generators/project/.gitignore", "lib/generators/project/Gemfile" ]
   s.homepage = "http://nistude.github.com/cucumber-puppet/"
   s.rubyforge_project = "cucumber-puppet"
   s.summary = "manifest testing for Puppet using Cucumber"
+
+  s.add_runtime_dependency(%q<bundler08>, ["= 0.8.5"])
+  s.add_runtime_dependency(%q<rake>, [">= 0.8.3"])
+  s.add_runtime_dependency(%q<templater>, [">= 1.0"])
 end
