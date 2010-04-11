@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.executables = ["cucumber-puppet-gen"]
   s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb",
     "lib/generators/project/.gitignore", "lib/generators/project/Gemfile",
-    "lib/generators/project/bin/cucumber-nagios",
-    "lib/generators/project/bin/cucumber-nagios-gen"]
+    "lib/generators/project/bin/cucumber-puppet",
+    "lib/generators/project/bin/cucumber-puppet-gen"]
   s.homepage = "http://nistude.github.com/cucumber-puppet/"
   s.rubyforge_project = "cucumber-puppet"
   s.summary = "manifest testing for Puppet using Cucumber"
