@@ -9,7 +9,9 @@ Gem::Specification.new do |s|
   s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb",
     "lib/generators/project/.gitignore", "lib/generators/project/Gemfile",
     "lib/generators/project/bin/cucumber-puppet",
-    "lib/generators/project/bin/cucumber-puppet-gen"]
+    "lib/generators/project/bin/cucumber-puppet-gen",
+    "lib/generators/project/lib/generators/feature/%feature_name%.feature",
+  ]
   s.homepage = "http://nistude.github.com/cucumber-puppet/"
   s.rubyforge_project = "cucumber-puppet"
   s.summary = "manifest testing for Puppet using Cucumber"
