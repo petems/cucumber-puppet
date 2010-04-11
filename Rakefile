@@ -15,7 +15,7 @@ end
 
 desc "build gem"
 task :build do 
-  exit 1 if `gem build cucumber-puppet.gemspec`.grep(/ERROR/)
+  system("gem build cucumber-puppet.gemspec")
 
   FileUtils.mkdir_p('pkg')
   puts
