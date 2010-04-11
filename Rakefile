@@ -15,7 +15,8 @@ end
 
 desc "build gem"
 task :build do 
-  system("gem build cucumber-puppet.gemspec")
+  exit 1 unless system("gem build cucumber-puppet.gemspec")
+  exit 1 unless File.exists?(Dir.glob("cucumber-puppet-*.gem").to_s)
 
   FileUtils.mkdir_p('pkg')
   puts
