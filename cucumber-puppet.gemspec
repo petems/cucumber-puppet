@@ -10,6 +10,12 @@ Gem::Specification.new do |s|
     "lib/generators/project/.gitignore", "lib/generators/project/Gemfile",
     "lib/generators/project/bin/cucumber-puppet",
     "lib/generators/project/bin/cucumber-puppet-gen",
+    "lib/generators/project/features/steps/file.rb",
+    "lib/generators/project/features/steps/package.rb",
+    "lib/generators/project/features/steps/puppet.rb",
+    "lib/generators/project/features/steps/user.rb",
+    "lib/generators/project/features/support/hooks.rb",
+    "lib/generators/project/features/support/world.rb",
     "lib/generators/project/lib/generators/feature/%feature_name%.feature",
   ]
   s.homepage = "http://nistude.github.com/cucumber-puppet/"
