@@ -7,10 +7,11 @@ Feature: Using cucumber-puppet
     Given cucumber-puppet is installed
     And I create a new project called "puppet"
     And I freeze in dependencies
-    When I generate a new feature called "foo" for module "bar"
 
   Scenario: Create a new feature
+    When I generate a new feature called "foo" for module "bar"
     Then a feature file for "foo" in module "bar" should exist
 
   Scenario: Run a successful feature
-    Then the "foo" feature for module "bar" should exit cleanly
+    When I generate an empty feature
+    Then the empty feature should exit cleanly
