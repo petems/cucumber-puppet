@@ -13,6 +13,10 @@ module CucumberPuppetGenerators
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
     end
 
+    def self.destination_root
+      File.join(@destination_root, 'features')
+    end
+
     desc <<-DESC
       Generate a cucumber feature. Takes two arguments:
         cucumber-puppet-gen feature <module-name> <feature-name>
@@ -27,9 +31,22 @@ module CucumberPuppetGenerators
     end
   end
 
-  desc "Generators for a cucumber-puppet feature"
+  class WorldGenerator < Templater::Generator
+    def self.source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'world')
+    end
+
+    desc <<-DESC
+      Generate cucumber step and support files. Takes no arguments:
+        cucumber-puppet-gen world
+    DESC
+
+    directory('steps', 'steps')
+    directory('support', 'support')
+  end
+
+  desc "Generators for cucumber-puppet"
   add :feature, FeatureGenerator
+  add :world, WorldGenerator
 
 end
-
-CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', Cucumber::Puppet::VERSION, ARGV
