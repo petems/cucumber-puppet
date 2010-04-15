@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
     "bin/cucumber-puppet",
     "bin/cucumber-puppet-gen",
     "lib/cucumber-puppet.rb",
+    "lib/generators/feature/%feature_name%.feature",
     "VERSION.yml",
   ]
   s.homepage = "http://github.com/nistude/cucumber-puppet/"
