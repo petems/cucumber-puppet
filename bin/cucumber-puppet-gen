@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'cucumber-puppet'
+require 'templater'
+
+module CucumberPuppetGenerators
+
+  extend Templater::Manifold
+
+  class FeatureGenerator < Templater::Generator
+    def self.source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
+    end
+
+    desc <<-DESC
+      Generate a cucumber feature. Takes two arguments:
+        cucumber-puppet-gen feature <module-name> <feature-name>
+    DESC
+
+    first_argument :mod, :required => true, :desc => "Module name"
+    second_argument :feature, :required => true, :desc => "Feature name"
+
+    template :feature do |template|
+      template.source = "%feature_name%.feature"
+      template.destination = "features/modules/#{mod}/#{feature}.feature"
+    end
+  end
+
+  desc "Generators for a cucumber-puppet feature"
+  add :feature, FeatureGenerator
+
+end
+
+CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', Cucumber::Puppet::VERSION, ARGV

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 unless ARGV[0]
-  puts "Usage: #{__FILE__} <feature> [<feature> <feature> ...]"
+  puts "Usage: cucumber-puppet <feature> [<feature> <feature> ...]"
   exit 1
 end
 
