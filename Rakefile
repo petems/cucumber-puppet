@@ -1,17 +1,20 @@
-#!/usr/bin/env ruby 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "cucumber-puppet"
+    gemspec.summary = "Puppet manifest testing with Cucumber"
+    gemspec.description = "cucumber-puppet allows you writing behavioural tests for your puppet manifest"
+    gemspec.email = "sturm@nistu.de"
+    gemspec.homepage = "http://github.com/nistude/cucumber-puppet/"
+    gemspec.authors = ["Nikolay Sturm"]
+    gem.rubyforge_project = "cucumber-puppet"
 
-require 'rubygems'
-require 'fileutils'
-
-begin 
-  require 'cucumber/rake/task'
-   
-  Cucumber::Rake::Task.new do |t|
-    t.cucumber_opts = "--require features/"
+    gem.add_dependency 'cucumber', '>= 0.6.4'
+    gem.add_dependency 'templater', '>= 1.0'
   end
 rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
 end
-
 
 desc "build gem"
 task :build do 
@@ -27,16 +30,3 @@ task :build do
   end
 end
 
-desc "push gem"
-task :push do 
-  filenames = Dir.glob("pkg/*.gem")
-  filenames_with_times = filenames.map do |filename| 
-    [filename, File.mtime(filename)] 
-  end
-  
-  oldest = filenames_with_times.sort_by { |tuple| tuple.last }.last
-  oldest_filename = oldest.first
-
-  command = "gem push #{oldest_filename}"
-  system(command)
-end
