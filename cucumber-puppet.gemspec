@@ -6,8 +6,11 @@ Gem::Specification.new do |s|
   s.description = "cucumber-puppet allows you writing behavioural tests for your puppet manifest"
   s.email = "sturm@nistu.de"
   s.executables = ["cucumber-puppet-gen"]
-  s.files = ["bin/cucumber-puppet-gen", "lib/cucumber-puppet.rb",
-    "lib/generators/project/.gitignore", "lib/generators/project/Gemfile",
+  s.files = [
+    "bin/cucumber-puppet-gen",
+    "lib/cucumber-puppet.rb",
+    "lib/generators/project/.gitignore",
+    "lib/generators/project/Gemfile",
     "lib/generators/project/bin/cucumber-puppet",
     "lib/generators/project/bin/cucumber-puppet-gen",
     "lib/generators/project/features/steps/file.rb",
@@ -18,11 +21,12 @@ Gem::Specification.new do |s|
     "lib/generators/project/features/support/world.rb",
     "lib/generators/project/lib/generators/feature/%feature_name%.feature",
   ]
-  s.homepage = "http://nistude.github.com/cucumber-puppet/"
+  s.homepage = "http://github.com/nistude/cucumber-puppet/"
   s.rubyforge_project = "cucumber-puppet"
   s.summary = "manifest testing for Puppet using Cucumber"
 
   s.add_runtime_dependency(%q<bundler08>, ["= 0.8.5"])
+  s.add_runtime_dependency(%q<cucumber>, [">= 0.6.4"])
   s.add_runtime_dependency(%q<rake>, [">= 0.8.3"])
   s.add_runtime_dependency(%q<templater>, [">= 1.0"])
 end
