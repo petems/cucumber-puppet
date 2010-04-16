@@ -51,4 +51,4 @@ module CucumberPuppetGenerators
 
 end
 
-CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', Cucumber::Puppet::VERSION, ARGV
+CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', CucumberPuppet::VERSION, ARGV
