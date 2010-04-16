@@ -9,12 +9,12 @@ module CucumberPuppetGenerators
   extend Templater::Manifold
 
   class FeatureGenerator < Templater::Generator
-    def self.source_root
+    def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
     end
 
     desc <<-DESC
-      Generate a cucumber feature. Takes two arguments:
+      Generate a cucumber feature.
         cucumber-puppet-gen feature <module-name> <feature-name>
     DESC
 
@@ -28,17 +28,16 @@ module CucumberPuppetGenerators
   end
 
   class WorldGenerator < Templater::Generator
-    def self.source_root
+    def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'world')
     end
 
-    # XXX
     def destination_root
       File.join(@destination_root, 'features')
     end
 
     desc <<-DESC
-      Generate cucumber step and support files. Takes no arguments:
+      Generate cucumber step and support files.
         cucumber-puppet-gen world
     DESC
 
@@ -51,3 +50,5 @@ module CucumberPuppetGenerators
   add :world, WorldGenerator
 
 end
+
+CucumberPuppetGenerators.run_cli Dir.pwd, 'cucumber-puppet-gen', Cucumber::Puppet::VERSION, ARGV
