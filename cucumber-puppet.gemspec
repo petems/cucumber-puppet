@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
     "bin/cucumber-puppet",
     "bin/cucumber-puppet-gen",
     "lib/cucumber-puppet.rb",
+    "lib/cucumber-puppet/puppet.rb",
     "lib/generators/feature/%feature_name%.feature",
     "lib/generators/world/steps/file.rb",
     "lib/generators/world/steps/package.rb",
