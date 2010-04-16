@@ -5,13 +5,10 @@ unless ARGV[0]
   exit 1
 end
 
-__DIR__ = File.expand_path(File.dirname(__FILE__))
-features_dir = File.expand_path(File.join(__DIR__, '..', 'features'))
-
 command = ""
 command << "cucumber "
 command << "--strict "
-command << "--require #{features_dir} "
+command << "--require features "
 command << ARGV.join(' ')
 
 system(command) ? exit(0) : exit(1)

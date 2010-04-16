@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'cucumber-puppet/puppet'
 
 World do
