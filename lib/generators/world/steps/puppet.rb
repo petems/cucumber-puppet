@@ -3,11 +3,15 @@ Given /^a node of class "([^\"]*)"$/ do |klass|
 end
 
 Given /^a node with name "([^\"]*)"$/ do |name|
-  @hostname = name
+  @facts['hostname'] = name
 end
 
 Given /^a node in network "([^\"]*)"$/ do |network|
-  @network_eth0 = network
+  @facts['network_eth0'] = network
+end
+
+Given /^it is a virtual node$/ do
+  @facts['processor0'] = "QEMU Virtual CPU version 0.11.0"
 end
 
 When /^I compile the catalog$/ do
