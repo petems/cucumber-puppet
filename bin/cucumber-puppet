@@ -5,10 +5,24 @@ unless ARGV[0]
   exit 1
 end
 
+ARGV.each { |f|
+  unless File.exists?(f)
+    puts "No such file or directory: #{f}"
+    exit 1
+  end
+}
+
+# XXX be more creative, finding this directory
+features_dir = "features"
+unless File.directory?(features_dir)
+  puts "Cannot find '#{features_dir}' directory."
+  exit 1
+end
+
 command = ""
 command << "cucumber "
 command << "--strict "
-command << "--require features "
+command << "--require #{features_dir} "
 command << ARGV.join(' ')
 
 system(command) ? exit(0) : exit(1)
