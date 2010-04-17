@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.version = "0.0.3"
 
   s.author = "Nikolay Sturm"
-  s.description = "cucumber-puppet allows you writing behavioural tests for your puppet manifest"
+  s.description = "cucumber-puppet supports writing behavioural tests for Puppet manifests"
   s.email = "cucumber-puppet@erisiandiscord.de"
   s.executables = ["cucumber-puppet", "cucumber-puppet-gen"]
   s.files = [
