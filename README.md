@@ -27,8 +27,11 @@ Run that feature
 
 # Installation
 
-Until its first release, you have to build the gem yourself. Prerequisites
-for this step are *gem* and *rake* (not strictly, but it makes life easier).
+The easiest way to use cucumber-puppet is to install the gem.
+
+	$ gem install cucumber-puppet
+
+## Manual installation from source
 
 You start by first cloning the repository
 
@@ -82,6 +85,18 @@ does the same with your feature files.
 generates *features/modules/foo/bar.feature* from the standard template. Use
 this file to write your feature and add missing step definitions to files in
 *features/steps/*.
+
+## Running Features
+
+To run above feature, execute
+
+	$ cucumber-puppet features/modules/foo/bar.feature
+
+and see it complain about missing step definitions. Add these to *.rb* files in
+*features/steps/*.
+
+For more information about writing cucumber features, see
+[cucumber tutorials](http://wiki.github.com/aslakhellesoy/cucumber/tutorials-and-related-blog-posts).
 
 # Acknowledgements
 
