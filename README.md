@@ -35,7 +35,7 @@ The easiest way to use cucumber-puppet is to install the gem.
 
 You start by first cloning the repository
 
-	$ gem clone http://github.com/nistude/cucumber-puppet.git
+	$ git clone http://github.com/nistude/cucumber-puppet.git
 
 and building the gem.
 
@@ -75,7 +75,7 @@ cucumber-puppet to your needs in *features/support/hooks.rb*.
 			'network_eth0' => "127.0.0.0"
 			'operatingsystem' => ""
 
-## Writing Features
+## Writing features
 
 cucumber-puppet assumes you have your Puppet manifest organized in modules and
 does the same with your feature files.
@@ -86,7 +86,7 @@ generates *features/modules/foo/bar.feature* from the standard template. Use
 this file to write your feature and add missing step definitions to files in
 *features/steps/*.
 
-## Running Features
+## Running features
 
 To run above feature, execute
 
