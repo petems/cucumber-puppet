@@ -83,8 +83,8 @@ generates *features/modules/foo/bar.feature* from the standard template. Use
 this file to write your feature and add missing step definitions to files in
 *features/steps/*.
 
-# Thanks
+# Acknowledgements
 
-cucumber-puppet is inspired by
+cucumber-puppet was inspired by
 [Lindsay Holmwood's](http://holmwood.id.au/~lindsay/)
 [cucumber-nagios](http://auxesis.github.com/cucumber-nagios/).
