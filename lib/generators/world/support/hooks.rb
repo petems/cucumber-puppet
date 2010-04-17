@@ -1,6 +1,6 @@
 Before do
   # local configuration
   @confdir = File.dirname(__FILE__) + "/../../"
-  # adjusting facts
+  # adjust facts like this
   @facts['architecture'] = "i386"
 end
