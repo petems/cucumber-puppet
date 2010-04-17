@@ -1,0 +1,11 @@
+- let cucumber-puppet{,-gen} find the repositories base dir automatically,
+  so that it works from any directory in the tree
+
+TESTS
+- generate world
+- generate a feature according to template
+- error handling:
+  - no argument
+  - non-existing feature
+  - feature-file
+  - feature-dir
