@@ -19,10 +19,23 @@ task :install do
     [filename, File.mtime(filename)]
   end
 
-  oldest = filenames_with_times.sort_by { |tuple| tuple.last }.last
-  oldest_filename = oldest.first
+  newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
+  newest_filename = newest.first
 
-  system("gem install #{oldest_filename}")
+  system("gem install #{newest_filename}")
+end
+
+desc "push gem"
+task :push do
+  filenames = Dir.glob("pkg/*.gem")
+  filenames_with_times = filenames.map do |filename|
+    [filename, File.mtime(filename)]
+  end
+
+  newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
+  newest_filename = newest.first
+
+  system("gem push #{newest_filename}")
 end
 
 desc "uninstall gem"
