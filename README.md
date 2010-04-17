@@ -39,12 +39,14 @@ and building the gem.
     $ cd cucumber-puppet
     $ rake build
 
-Then you can install it to your home directory, or system wide if you the next
-step as root.
+Then you can install it to your home directory, or system wide if you execute
+the next step as root.
 
     $ rake install
 
 # Usage
+
+## Initial setup
 
 Before writing your first feature, you have to setup some infrastructure in
 your puppet directory. Assuming you develop your puppet manifest in *~/puppet*.
@@ -52,9 +54,9 @@ your puppet directory. Assuming you develop your puppet manifest in *~/puppet*.
     $ cd ~/puppet
     $ cucumber-puppet-gen world
 
-This installs some example step definitions for cucumber and ensures the
-cucumber-puppet glue code is available. You can adapt cucumber-puppet to your
-needs in *features/support/hooks.rb*.
+This installs some example step definitions for cucumber to *features/steps*
+and ensures the cucumber-puppet glue code is available. You can adapt
+cucumber-puppet to your needs in *features/support/hooks.rb*.
 
     @confdir	puppet's confdir
 		defaults to /etc/puppet
@@ -69,6 +71,17 @@ needs in *features/support/hooks.rb*.
 			'lsbdistcodename' => ""
 			'network_eth0' => "127.0.0.0"
 			'operatingsystem' => ""
+
+## Writing Features
+
+cucumber-puppet assumes you have your puppet manifest organized in modules and
+does the same with your feature files.
+
+    $ cucumber-puppet-gen feature foo bar
+
+generates *features/modules/foo/bar.feature* from the standard template. Use
+this file to write your feature and add missing step definitions to files in
+*features/steps/*.
 
 # Thanks
 
