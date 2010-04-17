@@ -51,15 +51,15 @@ the next step as root.
 
 ## Initial setup
 
-Before writing your first feature, you have to setup some infrastructure in
+Before writing your first feature, you have to setup the infrastructure in
 your Puppet directory. Assuming you develop your Puppet manifest in *~/puppet/*.
 
 	$ cd ~/puppet
 	$ cucumber-puppet-gen world
 
-This installs some example step definitions for cucumber to *features/steps/*
+This installs some example step definitions for cucumber to *./features/steps/*
 and ensures the cucumber-puppet glue code is available. You can adapt
-cucumber-puppet to your needs in *features/support/hooks.rb*.
+cucumber-puppet to your needs in *./features/support/hooks.rb*.
 
     @confdir	Puppet's confdir
 		defaults to /etc/puppet
@@ -82,9 +82,9 @@ does the same with your feature files.
 
 	$ cucumber-puppet-gen feature foo bar
 
-generates *features/modules/foo/bar.feature* from the standard template. Use
+generates *./features/modules/foo/bar.feature* from the standard template. Use
 this file to write your feature and add missing step definitions to files in
-*features/steps/*.
+*./features/steps/*.
 
 ## Running features
 
@@ -93,7 +93,7 @@ To run above feature, execute
 	$ cucumber-puppet features/modules/foo/bar.feature
 
 and see it complain about missing step definitions. Add these to *.rb* files in
-*features/steps/*.
+*./features/steps/*.
 
 For more information about writing cucumber features, see
 [cucumber tutorials](http://wiki.github.com/aslakhellesoy/cucumber/tutorials-and-related-blog-posts).
