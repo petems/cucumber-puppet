@@ -7,23 +7,23 @@ It is currently in alpha testing.
 
 Install cucumber-puppet
 
-    $ gem install cucumber-puppet
+	$ gem install cucumber-puppet
 
 Go to your Puppet directory
 
-    $ cd puppet
+	$ cd puppet
 
 Initialise cucumber-puppet
 
-    $ cucumber-puppet-gen world
+	$ cucumber-puppet-gen world
 
 Create a feature *bar* for your Puppet module *foo*
 
-    $ cucumber-puppet-gen feature foo bar
+	$ cucumber-puppet-gen feature foo bar
 
 Run that feature
 
-    $ cucumber-puppet features/modules/foo/bar.feature
+	$ cucumber-puppet features/modules/foo/bar.feature
 
 # Installation
 
@@ -32,17 +32,17 @@ for this step are *gem* and *rake* (not strictly, but it makes life easier).
 
 You start by first cloning the repository
 
-    $ gem clone http://github.com/nistude/cucumber-puppet.git
+	$ gem clone http://github.com/nistude/cucumber-puppet.git
 
 and building the gem.
 
-    $ cd cucumber-puppet
-    $ rake build
+	$ cd cucumber-puppet
+	$ rake build
 
 Then you can install it to your home directory, or system wide if you execute
 the next step as root.
 
-    $ rake install
+	$ rake install
 
 # Usage
 
@@ -51,8 +51,8 @@ the next step as root.
 Before writing your first feature, you have to setup some infrastructure in
 your Puppet directory. Assuming you develop your Puppet manifest in *~/puppet/*.
 
-    $ cd ~/puppet
-    $ cucumber-puppet-gen world
+	$ cd ~/puppet
+	$ cucumber-puppet-gen world
 
 This installs some example step definitions for cucumber to *features/steps/*
 and ensures the cucumber-puppet glue code is available. You can adapt
@@ -77,7 +77,7 @@ cucumber-puppet to your needs in *features/support/hooks.rb*.
 cucumber-puppet assumes you have your Puppet manifest organized in modules and
 does the same with your feature files.
 
-    $ cucumber-puppet-gen feature foo bar
+	$ cucumber-puppet-gen feature foo bar
 
 generates *features/modules/foo/bar.feature* from the standard template. Use
 this file to write your feature and add missing step definitions to files in
