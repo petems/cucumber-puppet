@@ -1,3 +1,4 @@
+- README: what is this all about and how does it work?
 - let cucumber-puppet{,-gen} find the repositories base dir automatically,
   so that it works from any directory in the tree
 - sync steps with my puppet dir
