@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
     "lib/generators/world/steps/file.rb",
     "lib/generators/world/steps/package.rb",
     "lib/generators/world/steps/puppet.rb",
+    "lib/generators/world/steps/service.rb",
     "lib/generators/world/steps/user.rb",
     "lib/generators/world/support/hooks.rb",
     "lib/generators/world/support/world.rb",
