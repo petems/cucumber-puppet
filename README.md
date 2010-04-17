@@ -49,12 +49,12 @@ the next step as root.
 ## Initial setup
 
 Before writing your first feature, you have to setup some infrastructure in
-your puppet directory. Assuming you develop your puppet manifest in *~/puppet*.
+your puppet directory. Assuming you develop your puppet manifest in *~/puppet/*.
 
     $ cd ~/puppet
     $ cucumber-puppet-gen world
 
-This installs some example step definitions for cucumber to *features/steps*
+This installs some example step definitions for cucumber to *features/steps/*
 and ensures the cucumber-puppet glue code is available. You can adapt
 cucumber-puppet to your needs in *features/support/hooks.rb*.
 
