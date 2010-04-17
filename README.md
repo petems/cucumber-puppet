@@ -27,7 +27,48 @@ Run that feature
 
 # Installation
 
+Until its first release, you have to build the gem yourself. Prerequisites
+for this step are *gem* and *rake* (not strictly, but it makes life easier).
+
+You start by first cloning the repository
+
+  $ gem clone http://github.com/nistude/cucumber-puppet.git
+
+and building the gem.
+
+  $ cd cucumber-puppet
+  $ rake build
+
+Then you can install it to your home directory, or system wide if you the next
+step as root.
+
+  $ rake install
+
 # Usage
+
+Before writing your first feature, you have to setup some infrastructure in
+your puppet directory. Assuming you develop your puppet manifest in *~/puppet*.
+
+  $ cd ~/puppet
+  $ cucumber-puppet-gen world
+
+This installs some example step definitions for cucumber and ensures the
+cucumber-puppet glue code is available. You can adapt cucumber-puppet to your
+needs in *features/support/hooks.rb*.
+
+  @confdir	puppet's confdir
+		defaults to /etc/puppet
+  @manifest	full path to the manifest to use
+		defaults to @confdir + /manifests/site.pp
+  facts		this is a hash for facter facts
+		defaults to
+			'architecture' => ""
+			'domain' => "no.domain"
+			'environment' => "production"
+			'hostname' => "testnode"
+			'lsbdistcodename' => ""
+			'network_eth0' => "127.0.0.0"
+			'operatingsystem' => ""
 
 # Thanks
 
