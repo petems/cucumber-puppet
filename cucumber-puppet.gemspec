@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.author = "Nikolay Sturm"
   s.description = "cucumber-puppet supports writing behavioural tests for Puppet manifests"
@@ -11,6 +11,8 @@ Gem::Specification.new do |s|
     "lib/cucumber-puppet.rb",
     "lib/cucumber-puppet/puppet.rb",
     "lib/generators/feature/%feature_name%.feature",
+    "lib/generators/world/steps/cron.rb",
+    "lib/generators/world/steps/exec.rb",
     "lib/generators/world/steps/file.rb",
     "lib/generators/world/steps/package.rb",
     "lib/generators/world/steps/puppet.rb",
