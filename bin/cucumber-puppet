@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 
 unless ARGV[0]
-  puts "Usage: cucumber-puppet <feature> [<feature> <feature> ...]"
+  puts "Usage: cucumber-puppet [options] <feature> [<feature> <feature> ...]"
   exit 1
 end
 
 ARGV.each { |f|
+  next if f.match(/^-/)
   unless File.exists?(f)
     puts "No such file or directory: #{f}"
     exit 1
