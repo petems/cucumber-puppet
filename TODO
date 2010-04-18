@@ -5,6 +5,7 @@
   - add cucumber fragment to Rakefile
   - generate world
   - generate a feature according to template
+  - arguments for cucumber with or without feature files
   - error handling:
     - no argument
     - non-existing feature
