@@ -9,3 +9,7 @@
     - non-existing feature
     - feature-file
     - feature-dir
+- move features to modules? or both?
+- does a feature fail, when specified requires are not found? (manitest)
+- add some Rakefile magic like cucumber
+- support for hostname-based features (currently only class-based)
