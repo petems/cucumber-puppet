@@ -1,9 +1,8 @@
 0.1.0:
 - does a feature fail, when specified requires are not found? (manitest)
 - README: more about the idea behind it and some capabilities
-- let cucumber-puppet{,-gen} find the repositories base dir automatically,
-  so that it works from any directory in the tree
 - write some tests
+  - add cucumber fragment to Rakefile
   - generate world
   - generate a feature according to template
   - error handling:
@@ -11,7 +10,9 @@
     - non-existing feature
     - feature-file
     - feature-dir
-- add some Rakefile magic like cucumber
+- let cucumber-puppet{,-gen} find the repository's base dir automatically,
+  so that it works from any directory in the tree
+  - add some Rakefile magic like cucumber (lib) for running all features
 - move features to modules? or both? (for simpler packaging of modules)
 - issues
   - setup of @configdir
