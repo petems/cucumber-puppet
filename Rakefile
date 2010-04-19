@@ -1,3 +1,14 @@
+require 'rubygems'
+
+begin 
+  require 'cucumber/rake/task'
+   
+  Cucumber::Rake::Task.new do |t|
+    t.cucumber_opts = "--require features"
+  end
+rescue LoadError
+end
+
 desc "build gem"
 task :build do 
   exit 1 unless system("gem build cucumber-puppet.gemspec")
