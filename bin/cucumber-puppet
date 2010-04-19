@@ -2,7 +2,7 @@
 
 unless ARGV[0]
   puts "Usage: cucumber-puppet [options] <feature> [<feature> <feature> ...]"
-  exit 1
+  exit 0
 end
 
 command = ""
