@@ -5,7 +5,7 @@ Given /^an uninitialized directory tree$/ do
 end
 
 When /^I generate "([^\"]*)"$/ do |generator|
-  system("cucumber-puppet-gen world > /dev/null")
+  system("cucumber-puppet-gen #{generator} > /dev/null")
 end
 
 Then /^cucumber\-puppet's support infrastructure should be created$/ do
