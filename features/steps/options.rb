@@ -1,10 +1,11 @@
 When /^I call cucumber\-puppet with option "([^\"]*)"$/ do |option|
   basedir = File.dirname(__FILE__) + "/../.."
-  @output = `ruby #{basedir}/bin/cucumber-puppet #{option}`
-  if $?.to_i > 0
-    puts @output
-    fail
-  end
+  @output = `ruby #{basedir}/bin/cucumber-puppet #{option} 2>&1`
+end
+
+When /^I call "([^\"]*)" without option$/ do |program|
+  basedir = File.dirname(__FILE__) + "/../.."
+  @output = `ruby -I#{basedir}/lib #{basedir}/bin/#{program} 2>&1`
 end
 
 When /^I create an empty scenario$/ do
