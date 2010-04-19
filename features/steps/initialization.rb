@@ -1,11 +1,11 @@
 Given /^an uninitialized directory tree$/ do
   @dir = Dir.mktmpdir
   @oldwd = Dir.getwd
-  Dir.chdir(@dir)
+  fail unless Dir.chdir(@dir)
 end
 
 When /^I generate "([^\"]*)"$/ do |generator|
-  system("cucumber-puppet-gen #{generator} > /dev/null")
+  fail unless system("cucumber-puppet-gen #{generator} > /dev/null")
 end
 
 Then /^cucumber\-puppet's support infrastructure should be created$/ do
