@@ -13,17 +13,16 @@ ARGV.each { |f|
   end
 }
 
-# XXX be more creative, finding this directory
-features_dir = "features"
-unless File.directory?(features_dir)
-  puts "Cannot find '#{features_dir}' directory."
-  exit 1
-end
-
 command = ""
 command << "cucumber "
 command << "--strict "
-command << "--require #{features_dir} "
+
+# XXX be more creative, finding this directory
+features_dir = "features"
+if File.directory?(features_dir)
+  command << "--require #{features_dir} "
+end
+
 command << ARGV.join(' ')
 
 system(command) ? exit(0) : exit(1)
