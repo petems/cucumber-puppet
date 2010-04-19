@@ -5,7 +5,12 @@ Given /^an uninitialized directory tree$/ do
 end
 
 When /^I generate "([^\"]*)"$/ do |generator|
-  fail unless system("cucumber-puppet-gen #{generator} > /dev/null")
+  basedir = File.dirname(__FILE__) + "/../.."
+  fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} > /dev/null")
+  if generator == "world"
+    env = File.open("features/support/env.rb", "w")
+    env.puts("$LOAD_PATH.unshift \"#{basedir}/lib\"")
+  end
 end
 
 Then /^cucumber\-puppet's support infrastructure should be created$/ do
