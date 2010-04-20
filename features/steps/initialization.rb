@@ -4,6 +4,13 @@ Given /^an uninitialized directory tree$/ do
   fail unless Dir.chdir(@dir)
 end
 
+Given /^an initialized directory tree$/ do
+  steps %Q{
+    Given an uninitialized directory tree
+    When I generate "world"
+  }
+end
+
 When /^I generate "([^\"]*)"$/ do |generator|
   basedir = File.dirname(__FILE__) + "/../.."
   fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} > /dev/null")
