@@ -1,13 +1,11 @@
 0.1.0:
+- verify with puppet 0.25
 - does a feature fail, when specified requires are not found? (manitest)
 - README: more about the idea behind it and some capabilities
 - let cucumber-puppet{,-gen} find the repository's base dir automatically,
   so that it works from any directory in the tree
   - add some Rakefile magic like cucumber (lib) for running all features
 - move features to modules? or both? (for simpler packaging of modules)
-- issues
-  - setup of @configdir
-    http://github.com/nistude/cucumber-puppet/issues#issue/1
 
 0.2.0:
 - support for hostname-based features (currently only class-based)
