@@ -38,6 +38,7 @@ module CucumberPuppetGenerators
     DESC
 
     file('testcase.feature', 'testcase.feature', 'features/testcase.feature')
+    file('testcase.rb', 'testcase.rb', 'features/support/testcase.rb')
     file('site.pp', 'site.pp')
   end
 
