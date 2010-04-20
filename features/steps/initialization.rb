@@ -15,8 +15,13 @@ When /^I generate "([^\"]*)"$/ do |generator|
   basedir = File.dirname(__FILE__) + "/../.."
   fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} > /dev/null")
   if generator == "world"
-    env = File.open("features/support/env.rb", "w")
-    env.puts("$LOAD_PATH.unshift \"#{basedir}/lib\"")
+    oldworld = IO.read("features/support/world.rb")
+    newworld = []
+    newworld << "$LOAD_PATH.unshift '#{basedir}/lib'\n"
+    newworld << oldworld
+    world = File.open("features/support/world.rb", "w")
+    world << newworld
+    world.close
   end
 end
 
