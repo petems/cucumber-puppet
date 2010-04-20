@@ -32,16 +32,12 @@ module CucumberPuppetGenerators
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'testcase')
     end
 
-    def destination_root
-      File.join(@destination_root, 'features')
-    end
-
     desc <<-DESC
       Generate a test case for cucumber-puppet's test suite
         cucumber-puppet-gen testcase
     DESC
 
-    directory('features', 'features')
+    file('testcase.feature', 'testcase.feature', 'features/testcase.feature')
     file('site.pp', 'site.pp')
   end
 
