@@ -27,6 +27,24 @@ module CucumberPuppetGenerators
     end
   end
 
+  class TestcaseGenerator < Templater::Generator
+    def source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'testcase')
+    end
+
+    def destination_root
+      File.join(@destination_root, 'features')
+    end
+
+    desc <<-DESC
+      Generate a test case for cucumber-puppet's test suite
+        cucumber-puppet-gen testcase
+    DESC
+
+    directory('features', 'features')
+    file('site.pp', 'site.pp')
+  end
+
   class WorldGenerator < Templater::Generator
     def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'world')
@@ -47,6 +65,7 @@ module CucumberPuppetGenerators
 
   desc "Generators for cucumber-puppet"
   add :feature, FeatureGenerator
+  add :testcase, TestcaseGenerator
   add :world, WorldGenerator
 
 end
