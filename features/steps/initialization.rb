@@ -19,22 +19,12 @@ Given /^an initialized directory tree for puppet version "([^\"]*)"$/ do |versio
 end
 
 When /^I generate "([^\"]*)"$/ do |generator|
-  basedir = File.dirname(__FILE__) + "/../.."
-  fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} > /dev/null")
-  if generator == "world"
-    oldworld = IO.read("features/support/world.rb")
-    newworld = []
-    newworld << "$LOAD_PATH.unshift '#{basedir}/lib'\n"
-    newworld << oldworld
-    world = File.open("features/support/world.rb", "w")
-    world << newworld
-    world.close
-  end
+  steps %Q{ When I generate "#{generator}" for puppet version "" }
 end
 
 When /^I generate "([^\"]*)" for puppet version "([^\"]*)"$/ do |generator, version|
   basedir = File.dirname(__FILE__) + "/../.."
-  fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} #{version}")
+  fail unless system("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen #{generator} #{version} > /dev/null")
   if generator == "world"
     oldworld = IO.read("features/support/world.rb")
     newworld = []
