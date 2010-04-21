@@ -1,11 +1,5 @@
-require 'puppet'
-
-When /^puppet version "([^\"]*)" is installed$/ do |version|
-  fail unless Puppet.version == version
-end
-
 Then /^cucumber\-puppet should successfully run "([^\"]*)"$/ do |feature|
-  basedir = File.dirname(__FILE__) + "/../.."
+  basedir = File.dirname(__FILE__) + '/../..'
   output = `ruby #{basedir}/bin/cucumber-puppet features/#{feature}.feature`
   if $?.to_i > 0
     puts output
