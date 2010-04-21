@@ -4,7 +4,11 @@ begin
   require 'cucumber/rake/task'
    
   Cucumber::Rake::Task.new do |t|
-    t.cucumber_opts = "--require features"
+    t.cucumber_opts = "--require features --tags ~@puppet_version"
+  end
+  Cucumber::Rake::Task.new("puppet_version",
+    "Run Cucumber testcase against various puppet versions") do |t|
+    t.cucumber_opts = "--require features --tags @puppet_version"
   end
 rescue LoadError
 end

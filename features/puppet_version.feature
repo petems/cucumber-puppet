@@ -3,6 +3,7 @@ Feature: Test cucumber-puppet against various Puppet releases
   As a developer of cucumber-puppet
   I want cucumber-puppet to properly work with various Puppet releases
 
+  @puppet_version
   Scenario Outline: Test specific Puppet version
     Given an initialized directory tree for puppet version "<version>"
     When I generate "testcase"
