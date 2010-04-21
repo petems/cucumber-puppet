@@ -39,7 +39,11 @@ class CucumberPuppet
 
     begin
       # Compile our catalog
-      @catalog = Puppet::Node::Catalog.find(node.name, :use_node => node)
+      begin
+        @catalog = Puppet::Resource::Catalog.find(node.name, :use_node => node)
+      rescue NameError
+        @catalog = Puppet::Node::Catalog.find(node.name, :use_node => node)
+      end
     rescue => detail
       if Puppet[:trace]
         puts detail.backtrace
