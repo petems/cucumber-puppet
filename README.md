@@ -8,8 +8,9 @@ It is currently in alpha testing.
 cucumber-puppet should work with following program versions. Older versions
 might work as well, or not.
 
-- ruby >= 1.8.6
+- cucumber >= 0.6.4
 - puppet >= 0.24.8
+- ruby >= 1.8.6
 
 # Quickstart
 
