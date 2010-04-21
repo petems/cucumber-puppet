@@ -41,7 +41,7 @@ task :install do
 end
 
 desc "push gem"
-task :push do
+task :push => [:cucumber, :puppet_version] do
   filenames = Dir.glob("pkg/*.gem")
   filenames_with_times = filenames.map do |filename|
     [filename, File.mtime(filename)]
