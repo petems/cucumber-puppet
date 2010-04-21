@@ -56,8 +56,15 @@ module CucumberPuppetGenerators
         cucumber-puppet-gen world
     DESC
 
+    first_argument :version, :required => false, :desc => "Puppet version"
+
+    template :version do |template|
+      template.source = "support/world.rb"
+      template.destination = "support/world.rb"
+    end
+
     directory('steps', 'steps')
-    directory('support', 'support')
+    file('support/hooks.rb', 'support/hooks.rb')
   end
 
   desc "Generators for cucumber-puppet"
