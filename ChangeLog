@@ -1,2 +1,6 @@
 0.0.4
 - add support for puppet 0.25.X
+- add Cucumber rake tasks
+- add cucumber features for selftest
+- add steps for cron and exec, James Turnbull <james@lovedthanlost.net>
+- pass options on to cucumber
