@@ -1,3 +1,7 @@
+0.0.5
+- add rspec specs for selftest
+- add spec rake task
+
 0.0.4
 - add support for puppet 0.25.X
 - add Cucumber rake tasks
