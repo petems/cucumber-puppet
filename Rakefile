@@ -13,6 +13,13 @@ begin
 rescue LoadError
 end
 
+begin
+  require 'spec/rake/spectask'
+
+  Spec::Rake::SpecTask.new
+rescue LoadError
+end
+
 desc "build gem"
 task :build do 
   exit 1 unless system("gem build cucumber-puppet.gemspec")
@@ -41,7 +48,7 @@ task :install do
 end
 
 desc "push gem"
-task :push => [:cucumber, :puppet_version] do
+task :push => [:tests] do
   filenames = Dir.glob("pkg/*.gem")
   filenames_with_times = filenames.map do |filename|
     [filename, File.mtime(filename)]
@@ -52,6 +59,9 @@ task :push => [:cucumber, :puppet_version] do
 
   system("gem push #{newest_filename}")
 end
+
+desc "Run test suite"
+task :tests => [:cucumber, :puppet_version, :spec]
 
 desc "uninstall gem"
 task :uninstall do
