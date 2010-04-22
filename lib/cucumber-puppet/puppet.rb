@@ -58,7 +58,6 @@ class CucumberPuppet
   end
 
   def resource(title)
-    resource = @catalog.resource(title)
-    return resource
+    @catalog.resource(title)
   end
 end
