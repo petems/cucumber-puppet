@@ -11,17 +11,8 @@ Gem::Specification.new do |s|
     "lib/cucumber-puppet.rb",
     "lib/cucumber-puppet/puppet.rb",
     "lib/generators/feature/%feature_name%.feature",
-    "lib/generators/world/steps/cron.rb",
-    "lib/generators/world/steps/exec.rb",
-    "lib/generators/world/steps/file.rb",
-    "lib/generators/world/steps/package.rb",
-    "lib/generators/world/steps/puppet.rb",
-    "lib/generators/world/steps/service.rb",
-    "lib/generators/world/steps/user.rb",
-    "lib/generators/world/support/hooks.rb",
-    "lib/generators/world/support/world.rb",
     "VERSION.yml",
-  ]
+  ] + Dir.glob("lib/generators/world/**/*.rb")
   s.homepage = "http://github.com/nistude/cucumber-puppet/"
   s.name = "cucumber-puppet"
   s.summary = "Puppet manifest testing with Cucumber"
