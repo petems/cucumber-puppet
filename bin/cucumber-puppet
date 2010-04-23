@@ -12,14 +12,25 @@ command << "--strict "
 # XXX be more creative, finding this directory
 cwd = Dir.getwd
 features_dir = "features"
-if cwd.match('/features$')
+
+if cwd.match('/features$') and not cwd.match('/modules/')
   # assume: <puppetdir>/features
   features_dir = cwd
 elsif cwd.match('/features/modules$')
   # assume: <puppetdir>/features/modules
   features_dir = ".."
 elsif cwd.match('/features/modules/[^/]*$')
+  # assume: <puppetdir>/features/modules/$mod
   features_dir = "../.."
+elsif cwd.match('/modules$')
+  # assume: <puppetdir>/modules
+  features_dir = ".."
+elsif cwd.match('/modules/[^/]*$')
+  # assume: <puppetdir>/modules/$mod
+  features_dir = "../.."
+elsif cwd.match('/modules/[^/]*/features$')
+  # assume: <puppetdir>/modules/$mod
+  features_dir = "../../.."
 end
 
 # load library with basic step definitions
