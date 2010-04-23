@@ -1,4 +1,8 @@
 desc 'Run cucumber-puppet features'
 task :cucumber_puppet do
-  exit 1 unless system("cucumber-puppet features")
+  command = []
+  command << "cucumber-puppet"
+  command << "features"
+  command << Dir.glob("modules/**/features")
+  exit 1 unless system(command.join(' '))
 end
