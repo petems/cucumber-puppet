@@ -1,7 +1,8 @@
 0.0.5
 - add rspec specs for selftest
 - add spec task to Rakefile
-- add rake target for cucumber-puppet
+- add rake target for cucumber-puppet, which finds features in 'features'
+  and 'modules/**/features', see 'lib/cucumber-puppet/rake/task.rb' for details
 
 0.0.4
 - add support for puppet 0.25.X
