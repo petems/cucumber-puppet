@@ -1,8 +1,6 @@
 0.1.0:
 - does a feature fail, when specified requires are not found? (manitest)
 - README: more about the idea behind it and some capabilities
-- let cucumber-puppet{,-gen} find the repository's base dir automatically,
-  so that it works from any directory in the tree
 
 0.2.0:
 - support for hostname-based features (currently only class-based)

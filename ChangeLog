@@ -5,6 +5,7 @@
   and 'modules/**/features', see 'lib/cucumber-puppet/rake/task.rb' for details
 - add heuristic to cucumber-puppet-gen for figuring out a sensible target
   directory, depending on its cwd at call time
+- add the same heuristic to cucumber-puppet
 
 0.0.4
 - add support for puppet 0.25.X
