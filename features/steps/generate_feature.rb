@@ -1,5 +1,13 @@
-Then /^feature "([^\"]*)" for module "([^\"]*)" should exist$/ do |feature, mod|
-  @featurefile = "features/modules/#{mod}/#{feature}.feature"
+Given /^a working directory of "([^\"]*)"$/ do |dir|
+  steps %Q{ Given an uninitialized directory tree }
+  dir.split('/').each do |d|
+    Dir.mkdir(d)
+    Dir.chdir(d)
+  end
+end
+
+Then /^feature "([^\"]*)" should exist in "([^\"]*)"$/ do |feature, path|
+  @featurefile = "#{path}/#{feature}.feature"
   fail unless File.exists?(@featurefile)
 end
 

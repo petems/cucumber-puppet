@@ -21,9 +21,30 @@ module CucumberPuppetGenerators
     first_argument :mod, :required => true, :desc => "Module name"
     second_argument :feature, :required => true, :desc => "Feature name"
 
+    # figure out destination path according to puppet directory naming
+    # convention
+    path = Dir.getwd.split('/')
     template :feature do |template|
+      dirs = path.count
+
+      if path.last == "modules"
+        # assume: <puppetdir>/modules
+        destdir = "#{mod}/features"
+      elsif path.last == mod and path[dirs-2] == "modules"
+        # assume: <puppetdir>/modules/$mod
+        destdir = "features"
+      elsif path.last == "features" and
+            path[dirs-2] == mod and
+            path[dirs-3] == "modules"
+        # assume: <puppetdir>/modules/$mod/features
+        destdir = "."
+      else
+        # assume: <puppetdir>
+        destdir = "features/modules/#{mod}"
+      end
+
       template.source = "%feature_name%.feature"
-      template.destination = "features/modules/#{mod}/#{feature}.feature"
+      template.destination = "#{destdir}/#{feature}.feature"
     end
   end
 
@@ -47,9 +68,6 @@ module CucumberPuppetGenerators
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'world')
     end
 
-    def destination_root
-      File.join(@destination_root, 'features')
-    end
 
     desc <<-DESC
       Generate cucumber step and support files.
@@ -60,11 +78,11 @@ module CucumberPuppetGenerators
 
     template :version do |template|
       template.source = "support/world.rb"
-      template.destination = "support/world.rb"
+      template.destination = "features/support/world.rb"
     end
 
-    directory('steps', 'steps')
-    file('support/hooks.rb', 'support/hooks.rb')
+    directory('steps', 'steps', 'features/steps')
+    file('hooks.rb', 'support/hooks.rb', 'features/support/hooks.rb')
   end
 
   desc "Generators for cucumber-puppet"
