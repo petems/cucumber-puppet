@@ -1,5 +1,4 @@
 Given /^a working directory of "([^\"]*)"$/ do |dir|
-  steps %Q{ Given an uninitialized directory tree }
   dir.split('/').each do |d|
     Dir.mkdir(d)
     Dir.chdir(d)

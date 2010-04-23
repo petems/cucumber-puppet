@@ -10,7 +10,8 @@ Feature: Feature generation
     And it should contain "Feature: bar"
 
   Scenario Outline: Create feature from several different places
-    Given a working directory of "<cwd>"
+    Given an uninitialized directory tree
+    And a working directory of "<cwd>"
     When I generate "feature foo bar"
     Then feature "bar" should exist in "<destdir>"
 
