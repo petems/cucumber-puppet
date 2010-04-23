@@ -1,6 +1,6 @@
 Given /^a working directory of "([^\"]*)"$/ do |dir|
   dir.split('/').each do |d|
-    Dir.mkdir(d)
+    Dir.mkdir(d) unless File.exists?(d)
     Dir.chdir(d)
   end
 end
