@@ -7,7 +7,7 @@ Feature: Test cucumber-puppet against various Puppet releases
   Scenario Outline: Test specific Puppet version
     Given an initialized directory tree for puppet version "<version>"
     When I generate "testcase"
-    Then cucumber-puppet should successfully run "testcase"
+    Then cucumber-puppet should successfully run "features"
 
     Examples:
       | version |
