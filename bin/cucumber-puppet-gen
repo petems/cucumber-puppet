@@ -23,24 +23,33 @@ module CucumberPuppetGenerators
 
     # figure out destination path according to puppet directory naming
     # convention
-    path = Dir.getwd.split('/')
+    cwd = Dir.getwd
     template :feature do |template|
-      dirs = path.count
+      # default assumption: <puppetdir>
+      destdir = "features/modules/#{mod}"
 
-      if path.last == "modules"
-        # assume: <puppetdir>/modules
-        destdir = "#{mod}/features"
-      elsif path.last == mod and path[dirs-2] == "modules"
-        # assume: <puppetdir>/modules/$mod
-        destdir = "features"
-      elsif path.last == "features" and
-            path[dirs-2] == mod and
-            path[dirs-3] == "modules"
-        # assume: <puppetdir>/modules/$mod/features
+      if not cwd.match("features/")
+        # assume: not <puppetdir>/features/...
+        if cwd.match("modules$")
+          # assume: <puppetdir>/modules
+          destdir = "#{mod}/features"
+        elsif cwd.match("modules/#{mod}$")
+          # assume: <puppetdir>/modules/$mod
+          destdir = "features"
+        elsif cwd.match("modules/#{mod}/features$")
+          # assume: <puppetdir>/modules/$mod/features
+          destdir = "."
+        end
+      end
+      if cwd.match("features$") and not cwd.match("modules/")
+        # assume: <puppetdir>/features
+        destdir = "modules/#{mod}"
+      elsif cwd.match("features/modules$") and not cwd.match("modules/")
+        # assume: <puppetdir>/features/modules
+        destdir = mod
+      elsif cwd.match("features/modules/#{mod}$")
+        # assume: <puppetdir>/features/modules/$mod
         destdir = "."
-      else
-        # assume: <puppetdir>
-        destdir = "features/modules/#{mod}"
       end
 
       template.source = "%feature_name%.feature"
