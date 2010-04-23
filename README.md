@@ -10,6 +10,7 @@ might work as well, or not.
 
 - cucumber >= 0.6.4
 - puppet >= 0.24.8
+- rspec >= 1.3.0
 - ruby >= 1.8.6
 - templater >= 1.0.0
 
