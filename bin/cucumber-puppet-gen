@@ -5,26 +5,10 @@ require 'cucumber-puppet'
 require 'templater'
 
 module CucumberPuppetGenerators
-
-  extend Templater::Manifold
-
-  class FeatureGenerator < Templater::Generator
-    def source_root
-      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
-    end
-
-    desc <<-DESC
-      Generate a cucumber feature.
-        cucumber-puppet-gen feature <module-name> <feature-name>
-    DESC
-
-    first_argument :mod, :required => true, :desc => "Module name"
-    second_argument :feature, :required => true, :desc => "Feature name"
-
-    # figure out destination path according to puppet directory naming
-    # convention
-    cwd = Dir.getwd
-    template :feature do |template|
+  module Helper
+    # find destination path according to puppet directory naming convention
+    def find_destdir(mod)
+      cwd = Dir.getwd
       # default assumption: <puppetdir>
       destdir = "features/modules/#{mod}"
 
@@ -52,12 +36,38 @@ module CucumberPuppetGenerators
         destdir = "."
       end
 
+      destdir
+    end
+  end
+
+  extend Templater::Manifold
+
+  class FeatureGenerator < Templater::Generator
+    include CucumberPuppetGenerators::Helper
+
+    def source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
+    end
+
+    desc <<-DESC
+      Generate a cucumber feature.
+        cucumber-puppet-gen feature <module-name> <feature-name>
+    DESC
+
+    first_argument :mod, :required => true, :desc => "Module name"
+    second_argument :feature, :required => true, :desc => "Feature name"
+
+    template :feature do |template|
+      destdir = find_destdir(mod)
+
       template.source = "%feature_name%.feature"
       template.destination = "#{destdir}/#{feature}.feature"
     end
   end
 
   class TestcaseGenerator < Templater::Generator
+    extend CucumberPuppetGenerators::Helper
+
     def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'testcase')
     end
@@ -67,8 +77,9 @@ module CucumberPuppetGenerators
         cucumber-puppet-gen testcase
     DESC
 
-    file('testcase.feature', 'testcase.feature', 'features/testcase.feature')
-    file('testcase.rb', 'testcase.rb', 'features/support/testcase.rb')
+    destdir = find_destdir('testcase')
+    file('testcase.feature', 'testcase.feature', "#{destdir}/testcase.feature")
+    file('testcase.rb', 'testcase.rb', "#{destdir}/support/testcase.rb")
     file('site.pp', 'site.pp')
   end
 
