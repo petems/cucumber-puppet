@@ -12,6 +12,8 @@ command << "--strict "
 # XXX be more creative, finding this directory
 features_dir = "features"
 if File.directory?(features_dir)
+  # load library with basic step definitions
+  # -> have to load all step definitions explicitly
   command << "--require #{features_dir} "
 end
 
