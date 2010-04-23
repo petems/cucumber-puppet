@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
     "bin/cucumber-puppet-gen",
     "lib/cucumber-puppet.rb",
     "lib/cucumber-puppet/puppet.rb",
+    "lib/cucumber-puppet/rake/task.rb",
     "lib/generators/feature/%feature_name%.feature",
     "VERSION.yml",
   ] + Dir.glob("lib/generators/world/**/*.rb")
