@@ -12,27 +12,23 @@ module CucumberPuppetGenerators
       # default assumption: <puppetdir>
       destdir = "features/modules/#{mod}"
 
-      if not cwd.match("features/")
-        # assume: not <puppetdir>/features/...
-        if cwd.match("modules$")
-          # assume: <puppetdir>/modules
-          destdir = "#{mod}/features"
-        elsif cwd.match("modules/#{mod}$")
-          # assume: <puppetdir>/modules/$mod
-          destdir = "features"
-        elsif cwd.match("modules/#{mod}/features$")
-          # assume: <puppetdir>/modules/$mod/features
-          destdir = "."
-        end
-      end
       if cwd.match("features$") and not cwd.match("modules/")
         # assume: <puppetdir>/features
         destdir = "modules/#{mod}"
-      elsif cwd.match("features/modules$") and not cwd.match("modules/")
+      elsif cwd.match("features/modules$")
         # assume: <puppetdir>/features/modules
         destdir = mod
       elsif cwd.match("features/modules/#{mod}$")
         # assume: <puppetdir>/features/modules/$mod
+        destdir = "."
+      elsif cwd.match("modules$")
+        # assume: <puppetdir>/modules
+        destdir = "#{mod}/features"
+      elsif cwd.match("modules/#{mod}$")
+        # assume: <puppetdir>/modules/$mod
+        destdir = "features"
+      elsif cwd.match("modules/#{mod}/features$")
+        # assume: <puppetdir>/modules/$mod/features
         destdir = "."
       end
 
