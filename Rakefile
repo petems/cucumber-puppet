@@ -3,12 +3,13 @@ require 'rubygems'
 begin
   require 'cucumber/rake/task'
 
+  cucumber_opts = %w{--require features --format progress}
   Cucumber::Rake::Task.new do |t|
-    t.cucumber_opts = "--require features --tags ~@puppet_version --format progress"
+    t.cucumber_opts = [cucumber_opts, '--tags', '~@puppet_version']
   end
   Cucumber::Rake::Task.new("puppet_version",
     "Run Cucumber testcase against various puppet versions") do |t|
-    t.cucumber_opts = "--require features --tags @puppet_version"
+    t.cucumber_opts = [cucumber_opts, '--tags',' @puppet_version']
   end
 rescue LoadError
 end
@@ -16,7 +17,9 @@ end
 begin
   require 'spec/rake/spectask'
 
-  Spec::Rake::SpecTask.new
+  Spec::Rake::SpecTask.new do |t|
+    t.spec_opts = %w{--color --format progress}
+  end
 rescue LoadError
 end
 
