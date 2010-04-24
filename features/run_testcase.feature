@@ -18,3 +18,10 @@ Feature: Run testcase from different locations
       | modules | testcase/features/testcase.feature |
       | modules/testcase | features/testcase.feature |
       | modules/testcase/features | testcase.feature |
+
+  Scenario: Run testcase with custom steps from modules dir
+    Given an uninitialized directory tree
+    And a working directory of "modules/testcase"
+    When I generate "world"
+    And I generate "testcase"
+    Then cucumber-puppet should successfully run "features/testcase.feature"
