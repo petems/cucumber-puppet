@@ -5,6 +5,7 @@
 - add heuristic to cucumber-puppet-gen for figuring out a sensible target
   directory, depending on its cwd at call time
 - add the same heuristic to cucumber-puppet for --require
+- allow for features in puppet's modules/ directory tree
 
 0.0.4
 - add support for puppet 0.25.X
