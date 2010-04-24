@@ -11,6 +11,7 @@ Feature: Run testcase from different locations
 
     Examples:
       | cwd | feature |
+      | . | features/modules/testcase/testcase.feature |
       | features | modules/testcase/testcase.feature |
       | features/modules | testcase/testcase.feature |
       | features/modules/testcase | testcase.feature |
