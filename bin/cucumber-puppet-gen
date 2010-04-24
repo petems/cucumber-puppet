@@ -17,7 +17,7 @@ module CucumberPuppetGenerators
     end
 
     desc <<-DESC
-      Generate a cucumber feature.
+      Generate a cucumber feature
         cucumber-puppet-gen feature <module-name> <feature-name>
     DESC
 
@@ -40,7 +40,7 @@ module CucumberPuppetGenerators
     end
 
     desc <<-DESC
-      Generate a test case for cucumber-puppet's test suite
+      Generate a test case for the test suite
         cucumber-puppet-gen testcase
     DESC
 
@@ -57,7 +57,7 @@ module CucumberPuppetGenerators
 
 
     desc <<-DESC
-      Generate cucumber step and support files.
+      Generate cucumber step and support files
         cucumber-puppet-gen world
     DESC
 
