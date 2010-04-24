@@ -24,6 +24,8 @@ elsif cwd.match('/features/modules/[^/]*$')
 elsif cwd.match('/modules$')
   # assume: <puppetdir>/modules
   features_dir = "../features"
+  # XXX this should require only necessary directories according to features
+  #     given on the command line
   command << "--require */features "
 elsif cwd.match('/modules/[^/]*$')
   # assume: <puppetdir>/modules/$mod
