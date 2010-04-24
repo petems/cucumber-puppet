@@ -111,6 +111,9 @@ For more information about writing cucumber features, see
 
 # Acknowledgements
 
+Many thanks to [Bernd Ahlers](http://www.ba-net.org/) for getting me started
+with cucumber, rspec and ruby.
+
 cucumber-puppet was inspired by
 [Lindsay Holmwood's](http://holmwood.id.au/~lindsay/)
 [cucumber-nagios](http://auxesis.github.com/cucumber-nagios/).
