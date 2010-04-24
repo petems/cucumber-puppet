@@ -16,7 +16,7 @@ opts = OptionParser.new do |o|
   end
 
   o.on('-e', '--exclude PATTERN',
-       'see "cucumber --help" for details') do |pattern|
+       'Exclude files matching PATTERN') do |pattern|
     options << "--exclude #{pattern}"
   end
 
@@ -31,17 +31,21 @@ opts = OptionParser.new do |o|
     exit
   end
 
-  o.on('-n', '--name NAME', 'see "cucumber --help" for details') do |n|
+  o.on('-n', '--name NAME',
+       'Only run matching feature elements',
+       '  see "cucumber --help" for details') do |n|
     options << "--name #{n}"
   end
 
   o.on('-o', '--out FILE|DIR',
-       'Write output to file/directory instead of STDOUT') do |f|
+       'Write output to file/directory',
+       '  see "cucumber --help" for details') do |f|
     options << "--out #{f}"
   end
 
   o.on('-t', '--tags TAG_EXPRESSION',
-       'see "cucumber --help" for details') do |t|
+       'Only run features/scenarios matching expr',
+       '  see "cucumber --help" for details') do |t|
     options << "--tags #{t}"
   end
 
