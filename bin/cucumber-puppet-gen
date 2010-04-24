@@ -2,44 +2,15 @@
 
 require 'rubygems'
 require 'cucumber-puppet'
+require 'cucumber-puppet/helper'
 require 'templater'
 
 module CucumberPuppetGenerators
-  module Helper
-    # find destination path according to puppet directory naming convention
-    def find_destdir(mod)
-      cwd = Dir.getwd
-      # default assumption: <puppetdir>
-      destdir = "features/modules/#{mod}"
-
-      if cwd.match("features$") and not cwd.match("modules/")
-        # assume: <puppetdir>/features
-        destdir = "modules/#{mod}"
-      elsif cwd.match("features/modules$")
-        # assume: <puppetdir>/features/modules
-        destdir = mod
-      elsif cwd.match("features/modules/#{mod}$")
-        # assume: <puppetdir>/features/modules/$mod
-        destdir = "."
-      elsif cwd.match("modules$")
-        # assume: <puppetdir>/modules
-        destdir = "#{mod}/features"
-      elsif cwd.match("modules/#{mod}$")
-        # assume: <puppetdir>/modules/$mod
-        destdir = "features"
-      elsif cwd.match("modules/#{mod}/features$")
-        # assume: <puppetdir>/modules/$mod/features
-        destdir = "."
-      end
-
-      destdir
-    end
-  end
 
   extend Templater::Manifold
 
   class FeatureGenerator < Templater::Generator
-    include CucumberPuppetGenerators::Helper
+    include CucumberPuppet::Helper
 
     def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'feature')
@@ -62,7 +33,7 @@ module CucumberPuppetGenerators
   end
 
   class TestcaseGenerator < Templater::Generator
-    extend CucumberPuppetGenerators::Helper
+    extend CucumberPuppet::Helper
 
     def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'testcase')
