@@ -1,50 +1,67 @@
 #!/usr/bin/env ruby
 
+require 'cucumber-puppet'
+require 'cucumber-puppet/helper'
+require 'optparse'
+
+include CucumberPuppet::Helper
+
+options = {}
+opts = OptionParser.new do |o|
+  o.banner = "Usage: cucumber-puppet [options] <feature> [<feature> ...]"
+
+  o.on('-h', '--help', 'Show this message') do
+    puts opts
+    exit
+  end
+  # XXX test
+  o.on('-v', '--verbose', 'Show files and features loaded') do
+    options[:verbose] = true
+  end
+  o.on('--version', 'Show version number') do
+    puts CucumberPuppet::VERSION
+    exit
+  end
+end
+
+begin
+  opts.parse!
+rescue OptionParser::InvalidOption
+  puts opts
+  exit 1
+end
+
 unless ARGV[0]
-  puts "Usage: cucumber-puppet [options] <feature> [<feature> <feature> ...]"
-  exit 0
+  puts opts
+  exit 1
 end
 
-command = ""
-command << "cucumber "
-command << "--strict "
+command = []
+command << "cucumber --strict"
 
-# XXX be more creative, finding this directory
 cwd = Dir.getwd
+root = find_root(cwd)
+command << "--require #{root}/features"
 
-if cwd.match('/features$') and not cwd.match('/modules/')
-  # assume: <puppetdir>/features
-  features_dir = "."
-elsif cwd.match('/features/modules$')
-  # assume: <puppetdir>/features/modules
-  features_dir = ".."
-elsif cwd.match('/features/modules/[^/]*$')
-  # assume: <puppetdir>/features/modules/$mod
-  features_dir = "../.."
-elsif cwd.match('/modules$')
-  # assume: <puppetdir>/modules
-  features_dir = "../features"
-  # XXX this should require only necessary directories according to features
-  #     given on the command line
-  command << "--require */features "
-elsif cwd.match('/modules/[^/]*$')
-  # assume: <puppetdir>/modules/$mod
-  features_dir = "../../features"
-  command << "--require features "
-elsif cwd.match('/modules/[^/]*/features$')
-  # assume: <puppetdir>/modules/$mod
-  features_dir = "../../../features"
-  command << "--require . "
-else
-  # assume: <puppetdir>
-  features_dir = "features"
-  command << "--require modules/**/features "
+abs_root = File.expand_path(root)
+ARGV.each do |f|
+  if not File.exists?(f)
+    puts "No such file or directory: #{f}"
+    exit 1
+  end
+
+  abs_f = File.expand_path(f).split('/')
+  until abs_f.empty?
+    if abs_f.last == 'features'
+      command << "--require " + abs_f.join('/')
+      break
+    elsif abs_f.join('/') == abs_root
+      break
+    end
+    abs_f.pop
+  end
+
+  command << f
 end
 
-# load library with basic step definitions
-# -> have to load all step definitions explicitly
-command << "--require #{features_dir} "
-
-command << ARGV.join(' ')
-
-system(command) ? exit(0) : exit(1)
+system(command.join(' ')) ? exit(0) : exit(1)
