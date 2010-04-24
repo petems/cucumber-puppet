@@ -25,6 +25,10 @@ Feature: cucumber-puppet command line options
   Scenario: --expand
 
   Scenario: --format FORMAT
+    When I generate "world"
+    And I generate "testcase"
+    And I run cucumber-puppet with option "--format progress features"
+    Then it should show "...."
 
   Scenario: --help
     When I run cucumber-puppet with option "--help"

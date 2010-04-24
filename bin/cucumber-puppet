@@ -6,18 +6,26 @@ require 'optparse'
 
 include CucumberPuppet::Helper
 
-options = {}
+options = []
 opts = OptionParser.new do |o|
   o.banner = "Usage: cucumber-puppet [options] <feature> [<feature> ...]"
+
+  o.on('-f', '--format FORMAT',
+       'How to format features (default: pretty)',
+       '  see "cucumber --help" for details') do |format|
+    options << "--format #{format}"
+  end
 
   o.on('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
+
   # XXX test
   o.on('-v', '--verbose', 'Show files and features loaded') do
-    options[:verbose] = true
+    options << "--verbose"
   end
+
   o.on('--version', 'Show version number') do
     puts CucumberPuppet::VERSION
     exit
@@ -42,6 +50,7 @@ command << "cucumber --strict"
 cwd = Dir.getwd
 root = find_root(cwd)
 command << "--require #{root}/features"
+command << options
 
 abs_root = File.expand_path(root)
 ARGV.each do |f|
