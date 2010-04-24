@@ -6,23 +6,51 @@ Feature: cucumber-puppet command line options
   Background:
     Given an uninitialized directory tree
 
-  Scenario: without options
-    When I run cucumber-puppet with option ""
+  Scenario Outline: invalid command line
+    When I run cucumber-puppet with option "<option>"
     Then it should show usage information
 
-  Scenario: with invalid option
-    When I run cucumber-puppet with option "--invalid"
-    Then it should show usage information
+    Examples:
+      | option |
+      | |
+      | --invalid |
 
   Scenario: with non-existent feature
     When I run cucumber-puppet with option "invalid"
     Then it should show "No such file or directory:"
 
-  Scenario: --backtrace
+  Scenario Outline: flags, that should be there
+    When I run cucumber-puppet with option "--help"
+    Then it should show "<option>"
 
-  Scenario: --exclude PATTERN
+    Examples:
+      | option |
+      | --backtrace |
+      | --expand |
 
-  Scenario: --expand
+  Scenario Outline: disable testcase
+    When I generate "world"
+    And I generate "testcase"
+    And I run cucumber-puppet with option "<option> features"
+    Then it should show "0 scenarios"
+
+    Examples:
+      | option |
+      | --exclude testcase |
+      | --name foo |
+      | --tags @foo |
+
+  Scenario Outline: enable testcase
+    When I generate "world"
+    And I generate "testcase"
+    And I run cucumber-puppet with option "<option> features"
+    Then it should show "1 scenario"
+
+    Examples:
+      | option |
+      | --exclude foo |
+      | --name test |
+      | --tags ~@foo |
 
   Scenario: --format FORMAT
     When I generate "world"
@@ -34,13 +62,18 @@ Feature: cucumber-puppet command line options
     When I run cucumber-puppet with option "--help"
     Then it should show usage information
 
-  Scenario: --name NAME
-
   Scenario: --out FILE|DIR
-
-  Scenario: --tags TAG_EXPRESSION
+    When I generate "world"
+    And I generate "testcase"
+    And I run cucumber-puppet with option "--out foo features"
+    Then there should be a file "foo"
 
   Scenario: --verbose
+    When I generate "world"
+    And I generate "testcase"
+    And I run cucumber-puppet with option "--verbose features"
+    Then it should show "Features:"
+    And it should show "Code:"
 
   Scenario: --version
     When I run cucumber-puppet with option "--version"

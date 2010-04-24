@@ -14,3 +14,7 @@ end
 Then /^it should show usage information$/ do
   fail unless @output.include?("Usage: cucumber-puppet")
 end
+
+Then /^there should be a file "([^\"]*)"$/ do |file|
+  fail unless File.exists?(file)
+end

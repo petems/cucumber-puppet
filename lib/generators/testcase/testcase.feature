@@ -1,6 +1,6 @@
 Feature: test case
 
-  Scenario:
+  Scenario: test
     Given a node of class "test"
     When I compile the catalog
     Then there should be a resource "File[foo]"

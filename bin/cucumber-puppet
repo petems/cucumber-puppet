@@ -11,6 +11,15 @@ options = []
 opts = OptionParser.new do |o|
   o.banner = "Usage: cucumber-puppet [options] <feature> [<feature> ...]"
 
+  o.on('-b', '--backtrace', 'Show full backtrace for all errors') do
+    options << "--backtrace "
+  end
+
+  o.on('-e', '--exclude PATTERN',
+       'see "cucumber --help" for details') do |pattern|
+    options << "--exclude #{pattern}"
+  end
+
   o.on('-f', '--format FORMAT',
        'How to format features (default: pretty)',
        '  see "cucumber --help" for details') do |format|
@@ -22,7 +31,20 @@ opts = OptionParser.new do |o|
     exit
   end
 
-  # XXX test
+  o.on('-n', '--name NAME', 'see "cucumber --help" for details') do |n|
+    options << "--name #{n}"
+  end
+
+  o.on('-o', '--out FILE|DIR',
+       'Write output to file/directory instead of STDOUT') do |f|
+    options << "--out #{f}"
+  end
+
+  o.on('-t', '--tags TAG_EXPRESSION',
+       'see "cucumber --help" for details') do |t|
+    options << "--tags #{t}"
+  end
+
   o.on('-v', '--verbose', 'Show files and features loaded') do
     options << "--verbose"
   end
@@ -30,6 +52,10 @@ opts = OptionParser.new do |o|
   o.on('--version', 'Show version number') do
     puts CucumberPuppet::VERSION
     exit
+  end
+
+  o.on('-x', '--expand', 'Expand Scenario Outline Tables in output') do
+    options << "--expand"
   end
 end
 
