@@ -41,7 +41,7 @@ class CucumberPuppetRakeTask
       command << "cucumber-puppet"
       command << cucumber_opts
       command << "features"
-      command << Dir.glob("modules/**/features")
+      command << Dir.glob("modules/*/features")
       exit 1 unless system(command.join(' '))
     end
   end
