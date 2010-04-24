@@ -75,8 +75,8 @@ module CucumberPuppetGenerators
 
     destdir = find_destdir('testcase')
     file('testcase.feature', 'testcase.feature', "#{destdir}/testcase.feature")
-    file('testcase.rb', 'testcase.rb', "#{destdir}/../../support/testcase.rb")
-    file('site.pp', 'site.pp', "#{destdir}/../../../site.pp")
+    file('testcase.rb', 'testcase.rb', "#{destdir}/support/testcase.rb")
+    file('site.pp', 'site.pp', "#{destdir}/site.pp")
   end
 
   class WorldGenerator < Templater::Generator
