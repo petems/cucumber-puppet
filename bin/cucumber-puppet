@@ -38,6 +38,7 @@ elsif cwd.match('/modules/[^/]*/features$')
 else
   # assume: <puppetdir>
   features_dir = "features"
+  command << "--require modules/**/features "
 end
 
 # load library with basic step definitions
