@@ -9,10 +9,15 @@ cucumber-puppet should work with following program versions. Older versions
 might work as well, or not.
 
 - cucumber >= 0.6.4
+- gem-man >= 0.2.0
 - puppet >= 0.24.8
-- rspec >= 1.3.0
 - ruby >= 1.8.6
 - templater >= 1.0.0
+
+For development, these additional programs are needed.
+
+- ronn >= 0.5
+- rspec >= 1.3.0
 
 # Quickstart
 
