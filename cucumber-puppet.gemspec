@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   s.summary = "Puppet manifest testing with Cucumber"
 
   s.add_runtime_dependency(%q<cucumber>, [">= 0.6.4"])
+  s.add_runtime_dependency(%q<gem-man>, [">= 0.2.0"])
   s.add_runtime_dependency(%q<templater>, [">= 1.0"])
 end
