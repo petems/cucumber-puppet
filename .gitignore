@@ -1,2 +1,3 @@
 *.swp
+man/*.1
 pkg

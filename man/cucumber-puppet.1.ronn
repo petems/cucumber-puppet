@@ -1,0 +1,95 @@
+# cucumber-puppet(1) -- Puppet manifest testing with Cucumber
+
+## SYNOPSIS
+
+`cucumber-puppet` [ OPTIONS ] FILE | DIR ...
+
+## DESCRIPTION
+
+`cucumber-puppet` is a tool for behavioral testing of Puppet manifests. It
+provides the glue, necessary to access Puppet's data structures from Cucumber's
+step definitions.
+
+`cucumber-puppet` takes a list of feature files or directories, containing
+feature files, as argument. These will then be run through `cucumber`.
+
+  * `-h`, `--help`:
+    Show help message.
+
+  * `--version`:
+    Show version number.
+
+Certain options are passed on to `cucumber`. See `cucumber --help` for further
+details.
+
+  * `-b`, `--backtrace`:
+    Show full backtrace for all errors.
+
+  * `-e`, `--exclude` _PATTERN_:
+    Don't run feature files or require ruby files matching _PATTERN_.
+
+  * `-f`, `--format` _FORMAT_:
+    How to format features (Default: pretty).
+
+  * `-n`, `--name` _NAME_:
+    Only run matching feature elements.
+
+  * `-o`, `--out` _FILE_|_DIR_:
+    Write output to _FILE_|_DIR_.
+
+  * `-t`, `--tags` _TAG-EXPRESSION_:
+    Only run features/scenarios matching _TAG-EXPRESSION_.
+
+  * `-v`, `--verbose`:
+    Show files and features loaded.
+
+  * `-x`, `--expand`:
+    Expand Scenario Outline Tables in output.
+
+## FILES
+
+`cucumber-puppet` assumes a certain directory structure to magically find
+necessary support files. Relative to the puppet directory's root, the structure
+looks like this:
+
+  * `features/`:
+    The generic place to store Cucumber files.
+
+  * `features/modules/foo/`:
+    Feature files for module _foo_ go here.
+
+  * `features/modules/foo/bar.feature`:
+    File containing scenarios for the _bar_ feature.
+
+  * `features/steps/`:
+    Step definitions go here. To distinguish local extensions, it is suggested
+    putting these into files named `module_foo.rb` or `define_bar.rb`. Although
+    names don't really matter to cucumber, as long as files have the proper
+    suffix.
+
+  * `features/support/`:
+    Cucumber support files go here.
+
+`cucumber-puppet` also supports bundling features with modules. In this case
+it looks for features, step definitions and support files in
+
+  * `modules/foo/features/bar.feature`
+
+  * `modules/foo/features/steps/bar.rb`
+
+## EXAMPLES
+
+## COPYRIGHT
+
+`cucumber-puppet` is Copyright (c) 2010 Nikolay Sturm <sturm@nistu.de>
+
+## SEE ALSO
+
+Behavior Driven Development:
+  http://en.wikipedia.org/wiki/Behavior\_driven\_development
+
+Cucumber:
+  http://cukes.info/
+
+Puppet:
+  http://puppetlabs.com/puppet/

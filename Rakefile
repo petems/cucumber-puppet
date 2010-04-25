@@ -24,8 +24,8 @@ rescue LoadError
 end
 
 desc "build gem"
-task :build do
-  exit 1 unless system("gem build cucumber-puppet.gemspec")
+task :build => [:build_docs] do
+  sh("gem build cucumber-puppet.gemspec")
   exit 1 unless File.exists?(Dir.glob("cucumber-puppet-*.gem").to_s)
 
   FileUtils.mkdir_p('pkg')
@@ -34,6 +34,14 @@ task :build do
     dest = File.join('pkg', gem)
     FileUtils.mv(gem, dest)
     puts "New gem in #{dest}"
+  end
+end
+
+desc "build documentation"
+task :build_docs do
+  manpages = Dir.glob("man/*.ronn")
+  manpages.each do |m|
+    sh("ronn -b #{m}")
   end
 end
 
@@ -47,7 +55,7 @@ task :install do
   newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
   newest_filename = newest.first
 
-  system("gem install #{newest_filename}")
+  sh("gem install #{newest_filename}")
 end
 
 desc "push gem"
@@ -60,7 +68,7 @@ task :push => [:tests] do
   newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
   newest_filename = newest.first
 
-  system("gem push #{newest_filename}")
+  sh("gem push #{newest_filename}")
 end
 
 desc "Run test suite"
@@ -68,5 +76,5 @@ task :tests => [:cucumber, :puppet_version, :spec]
 
 desc "uninstall gem"
 task :uninstall do
-  system("gem uninstall -x cucumber-puppet")
+  sh("gem uninstall -x cucumber-puppet")
 end

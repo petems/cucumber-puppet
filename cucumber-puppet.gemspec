@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
     "lib/cucumber-puppet/puppet.rb",
     "lib/cucumber-puppet/rake/task.rb",
     "lib/generators/feature/%feature_name%.feature",
+    "man/cucumber-puppet.1",
     "VERSION.yml",
   ] + Dir.glob("lib/generators/world/**/*.rb")
   s.homepage = "http://github.com/nistude/cucumber-puppet/"
