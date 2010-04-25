@@ -1,5 +1,5 @@
 Feature: cucumber-puppet command line options
-  In order to influence cucumber-puppet's behaviour
+  In order to influence cucumber-puppet's behavior
   As a user of cucumber-puppet
   I want it to support certain command line options
 

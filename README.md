@@ -1,6 +1,6 @@
 # cucumber-puppet
 
-cucumber-puppet allows you writing behavioural tests for your Puppet manifest.
+cucumber-puppet allows you writing behavioral tests for your Puppet manifest.
 It is currently in alpha testing.
 
 # Requirements
