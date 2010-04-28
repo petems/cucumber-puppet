@@ -3,24 +3,8 @@ Feature: Feature generation
   As a puppet manifest developer
   I want to create new features according to template
 
-  Scenario: Create feature in base directory
+  Scenario: Create feature from template
     Given an uninitialized directory tree
     When I generate "feature foo bar"
     Then feature "bar" should exist in "features/modules/foo"
     And it should contain "Feature: bar"
-
-  Scenario Outline: Create feature from several different places
-    Given an uninitialized directory tree
-    And a working directory of "<cwd>"
-    When I generate "feature foo bar"
-    Then feature "bar" should exist in "<destdir>"
-
-    Examples:
-      | cwd | destdir |
-      | features | modules/foo |
-      | features/modules | foo |
-      | features/modules/foo | . |
-      | modules | foo/features |
-      | modules/foo | features |
-      | modules/foo/features | . |
-      | test | features/modules/foo |
