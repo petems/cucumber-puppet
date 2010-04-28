@@ -78,8 +78,7 @@ end
 command = []
 command << "cucumber --strict"
 
-cwd = Dir.getwd
-root = find_root(cwd)
+root = find_root
 command << "--require #{root}/features"
 command << options
 

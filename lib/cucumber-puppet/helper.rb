@@ -6,7 +6,8 @@ module CucumberPuppet::Helper
   # - <puppetdir>/features/modules/$module
   # - <puppetdir>/modules/$module/features
   # In case no tree is identified, assumes cwd is <puppetdir>.
-  def find_root(cwd)
+  def find_root
+    cwd = Dir.getwd
     path = cwd.split('/')
 
     if cwd.match('features$') and not cwd.match("modules/")
