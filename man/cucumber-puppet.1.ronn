@@ -7,11 +7,12 @@
 ## DESCRIPTION
 
 `cucumber-puppet` is a tool for behavioral testing of Puppet manifests. It
-provides the glue, necessary to access Puppet's data structures from Cucumber's
+provides the glue necessary to access Puppet's data structures from Cucumber's
 step definitions.
 
 `cucumber-puppet` takes a list of feature files or directories, containing
-feature files, as argument. These will then be run through `cucumber`.
+feature files, as argument. These will then be run through `cucumber`. It needs
+to be started from somewhere inside your Puppet directory tree.
 
   * `-h`, `--help`:
     Show help message.
@@ -19,8 +20,8 @@ feature files, as argument. These will then be run through `cucumber`.
   * `--version`:
     Show version number.
 
-Certain options are passed on to `cucumber`. See `cucumber --help` for further
-details.
+The following options are passed on to `cucumber`. See `cucumber --help` for
+further details.
 
   * `-b`, `--backtrace`:
     Show full backtrace for all errors.
@@ -49,7 +50,7 @@ details.
 ## FILES
 
 `cucumber-puppet` assumes a certain directory structure to magically find
-necessary support files. Relative to the puppet directory's root, the structure
+necessary support files. Relative to the Puppet directory's root, the structure
 looks like this:
 
   * `features/`:
@@ -70,20 +71,38 @@ looks like this:
   * `features/support/`:
     Cucumber support files go here.
 
-`cucumber-puppet` also supports bundling features with modules. In this case
-it looks for features, step definitions and support files in
+`cucumber-puppet` also supports bundling features with modules. In this case it
+looks for features, step definitions and support files in
+`modules/foo/features/` like so:
 
-  * `modules/foo/features/bar.feature`
+  * `modules/foo/features/bar.feature`:
+    Bundled feature file.
 
-  * `modules/foo/features/steps/bar.rb`
+  * `modules/foo/features/steps/bar.rb`:
+    Bundled step definition.
 
 ## EXAMPLES
+
+To run all features found in a directory:
+
+    $ cucumber-puppet features
+
+To run a single feature:
+
+    $ cucumber-puppet features/modules/foo/bar.feature
+
+## REPORTING BUGS
+
+Report bugs to <cucumber-puppet@erisiandiscord.de> or go to
+http://github.com/nistude/cucumber-puppet/issues
 
 ## COPYRIGHT
 
 `cucumber-puppet` is Copyright (c) 2010 Nikolay Sturm <sturm@nistu.de>
 
 ## SEE ALSO
+
+cucumber-puppet-gen(1), tutorial(7)
 
 Behavior Driven Development:
   http://en.wikipedia.org/wiki/Behavior\_driven\_development
