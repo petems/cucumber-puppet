@@ -20,6 +20,7 @@ describe 'CucumberPuppet::Helper' do
       end
     end
   end
+
   describe '.find_root' do
     paths = [
       'puppet', 'puppet/modules', 'puppet/modules/foo',
@@ -27,7 +28,7 @@ describe 'CucumberPuppet::Helper' do
       'puppet/features/modules', 'puppet/features/modules/foo'
     ]
     paths.each do |p|
-      it "should return puppet for #{p}" do
+      it "should return 'puppet' for #{p}" do
         Dir.stub(:getwd).and_return(p)
         root = find_root
         root.should == 'puppet'
