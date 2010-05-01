@@ -1,7 +1,10 @@
 require 'puppet'
 require 'puppet/network/client'
 
+# A class for accessing Puppet's internal state regarding a certain node or
+# class.
 class CucumberPuppet
+  # Returns a new CucumberPuppet object.
   def initialize
     @confdir = "/etc/puppet"
     @manifest = @confdir + "/manifest/site.pp"
@@ -21,14 +24,22 @@ class CucumberPuppet
     Puppet::Util::Log.level = :notice
   end
 
+  # Set Puppet's log level to 'debug'.
   def debug
     Puppet::Util::Log.level = :debug
   end
 
+  # Define Puppet classes to include in a feature's testnode.
   def klass=(klass)
+    # XXX sth like klass.split(/,/) and remove whitespace
     @klass = klass.to_a
   end
 
+  # Compile catalog for configured testnode.
+  #
+  #   @confdir defaults to '/etc/puppet'
+  #   @manifest defaults to @confdir + '/manifests/site.pp'
+  #
   def compile_catalog
     Puppet[:confdir] = @confdir
     Puppet[:manifest] = @manifest
@@ -57,6 +68,7 @@ class CucumberPuppet
     end
   end
 
+  # Returns an Object with the given title from catalog.
   def resource(title)
     @catalog.resource(title)
   end

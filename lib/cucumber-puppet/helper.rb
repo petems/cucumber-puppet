@@ -1,10 +1,12 @@
 require 'cucumber-puppet'
 
 module CucumberPuppet::Helper
-  # Finds the root of the puppet directory tree according to puppet's
+  # Finds the root of the puppet directory tree according to Puppet's
   # directory naming convention. Relevant sub-trees are:
+  #
   # - <puppetdir>/features/modules/$module
   # - <puppetdir>/modules/$module/features
+  #
   # In case no tree is identified, assumes cwd is <puppetdir>.
   def find_root
     cwd = Dir.getwd

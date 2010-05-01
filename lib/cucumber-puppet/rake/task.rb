@@ -5,7 +5,7 @@
 #   CucumberPuppetRakeTask.new
 #
 # This defines a task 'cucumber_puppet' that will run features in 'features'
-# and 'modules/**/features'.
+# and 'modules/*/features'.
 #
 # To further configure the task, you can pass a block:
 #
@@ -14,16 +14,16 @@
 #   end
 
 class CucumberPuppetRakeTask
-  # extra options to pass to cucumber
   attr_accessor :cucumber_opts
 
-  # an Array is preferred, so convert if String
+  # Extra options to pass to cucumber via cucumber-puppet.
+  # An Array is preferred, so convert if String.
   def cucumber_opts=(opts)
     @cucumber_opts = String === opts ? opts.split(' ') : opts
   end
 
 
-  # define CucumberPuppet Rake task
+  # Define CucumberPuppet Rake task.
   def initialize(task_name = 'cucumber_puppet',
                  desc = 'Run cucumber-puppet features')
     @task_name = task_name
