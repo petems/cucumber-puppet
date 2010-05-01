@@ -1,6 +1,9 @@
 require 'cucumber-puppet'
 
+# Private helper methods.
 module CucumberPuppet::Helper
+  private
+
   # Finds the root of the puppet directory tree according to Puppet's
   # directory naming convention. Relevant sub-trees are:
   #

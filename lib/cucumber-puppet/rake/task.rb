@@ -34,6 +34,7 @@ class CucumberPuppetRakeTask
     define_task
   end
 
+  private
   def define_task
     desc @desc
     task @task_name do
