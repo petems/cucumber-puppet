@@ -12,7 +12,7 @@ step definitions.
 
 `cucumber-puppet` takes a list of feature files or directories, containing
 feature files, as argument. These will then be run through `cucumber`. It needs
-to be started from somewhere inside your Puppet directory tree.
+to be started from somewhere inside the Puppet directory tree.
 
   * `-h`, `--help`:
     Show help message.
@@ -79,7 +79,7 @@ looks for features, step definitions and support files in
     Bundled feature file.
 
   * `modules/foo/features/steps/bar.rb`:
-    Bundled step definition.
+    Bundled step definition file.
 
 ## EXAMPLES
 
