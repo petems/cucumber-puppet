@@ -1,0 +1,54 @@
+# cucumber-puppet-gen(1) -- Generator script for cucumber-puppet
+
+## SYNOPSIS
+
+`cucumber-puppet-gen` feature MODULE FEATURE
+
+`cucumber-puppet-gen` world
+
+## DESCRIPTION
+
+`cucumber-puppet-gen` generates feature files and initializes a Puppet tree
+for use with `cucumber-puppet`.
+
+  * `cucumber-puppet-gen` feature MODULE FEATURE:
+    Generate a feature file from template for feature FEATURE and module
+    MODULE. Depending on the current working directory, the feature is either
+    placed in `features/modules/MODULE/FEATURE.feature` or, if called from the
+    `modules/` subdirectory tree, `modules/MODULE/features/FEATURE.feature`.
+
+  * `cucumber-puppet-gen` world:
+    Initialize Puppet tree for use with `cucumber-puppet`, to be run from the
+    Puppet tree's root.
+
+## EXAMPLES
+
+Initialize the Puppet tree:
+
+    $ cd puppet
+    $ cucumber-puppet-gen world
+
+Generated files are to be found in `features/steps/` and `features/support/`.
+
+Create a feature file for module _foo_'s _bar_ feature:
+
+    $ cd puppet
+    $ cucumber-puppet-gen feature foo bar
+
+Create the same feature file to be bundled with the module:
+
+    $ cd puppet/modules
+    $ cucumber-puppet-gen feature foo bar
+
+## REPORTING BUGS
+
+Report bugs to <cucumber-puppet@erisiandiscord.de> or go to
+http://github.com/nistude/cucumber-puppet/issues
+
+## COPYRIGHT
+
+`cucumber-puppet` is Copyright (c) 2010 Nikolay Sturm <sturm@nistu.de>
+
+## SEE ALSO
+
+cucumber-puppet(1), tutorial(7)
