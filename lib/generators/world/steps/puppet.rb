@@ -32,22 +32,32 @@ end
 
 Then /^the [a-z]* should notify "([^\"]*)"$/ do |res|
   fail unless @resource["notify"].to_s == res
+  steps %Q{
+    Then the catalog should contain "#{res}"
+  }
 end
 
-Then /^the [a-z]* should require "([^\"]*)"$/ do |resource|
+Then /^the [a-z]* should require "([^\"]*)"$/ do |res|
   req = @resource["require"]
   if req.is_a?(Array)
     found = false
     req.each do |r|
-      if r.to_s == resource
+      if r.to_s == res
         found = true
         break
       end
     end
     fail unless found
   else
-    fail unless req.to_s == resource
+    fail unless req.to_s == res
   end
+  steps %Q{
+    Then the catalog should contain "#{res}"
+  }
+end
+
+Then /^the catalog should contain "([^\"]*)"$/ do |res|
+  fail unless resource(res)
 end
 
 Then /^the state should be "([^\"]*)"$/ do |state|
@@ -57,9 +67,4 @@ end
 Then /^there should be a resource "([^\"]*)"$/ do |res|
   @resource = resource(res)
   fail unless @resource
-end
-
-Then /^there should be no resource "([^\"]*)"$/ do |res|
-  @resource = resource(res)
-  fail if @resource
 end
