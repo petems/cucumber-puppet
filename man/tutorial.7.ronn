@@ -1,0 +1,22 @@
+# tutorial(7) -- cucumber-puppet tutorial
+
+This tutorial will get you started on using `cucumber-puppet` by going through
+an easy example. Let's assume there is a directory called _puppet_ where you
+store your puppet configuration. Before using `cucumber-puppet` you have to
+initialize the directory tree.
+
+    $ cd puppet
+    $ cucumber-puppet-gen world
+
+This creates a subdirectory called _features_ inside the puppet tree and
+populates it with a number of files. In the _steps_ subdirectory, you will
+find some sample step definitions, while the _support_ subdirectory contains
+the glue between `cucumber` and `puppet` in _world.rb_ and a file called
+_hooks.rb_ where you can set default facts.
+
+    $ cucumber-puppet-gen feature wget wgetrc
+    $ vim features/modules/wget/wgetrc.feature
+    $ vim features/steps/module_wget.rb
+    $ cucumber-puppet features/modules/wget/wgetrc.feature
+    $ vim modules/wget/manifests/init.pp
+    $ cucumber-puppet features/modules/wget/wgetrc.feature
