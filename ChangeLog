@@ -1,3 +1,7 @@
+0.0.6
+- compile_catalog() takes a Puppet::Node as optional argument:
+  compile_catalog(YAML.load_file("hostname.yaml"))
+
 0.0.5
 - add rspec specs for selftest
 - support features in modules directory tree
