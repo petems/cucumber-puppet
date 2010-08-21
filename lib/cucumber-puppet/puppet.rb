@@ -70,6 +70,10 @@ class CucumberPuppet
 
   # Returns an Object with the given title from catalog.
   def resource(title)
+    # XXX add deprecation warning for resource()
+    @catalog.resource(title)
+  end
+  def get_resource(title)
     @catalog.resource(title)
   end
 end
