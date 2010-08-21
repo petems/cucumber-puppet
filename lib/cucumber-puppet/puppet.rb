@@ -40,13 +40,15 @@ class CucumberPuppet
   #   @confdir defaults to '/etc/puppet'
   #   @manifest defaults to @confdir + '/manifests/site.pp'
   #
-  def compile_catalog
+  def compile_catalog( node = nil )
     Puppet[:confdir] = @confdir
     Puppet[:manifest] = @manifest
     Puppet.parse_config
 
-    node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
-    node.merge(@facts)
+    unless node.is_a?(Puppet::Node)
+      node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
+      node.merge(@facts)
+    end
 
     begin
       # Compile our catalog
