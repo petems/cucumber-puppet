@@ -82,12 +82,12 @@ describe CucumberPuppet do
     end
   end
 
-  describe '#resource' do
+  describe '#get_resource' do
     it 'should return an entry from the catalog' do
       c = TestCucumberPuppet.new
       c.catalog = mock("catalog").as_null_object
       c.catalog.should_receive(:resource).with("foo")
-      c.resource("foo")
+      c.get_resource("foo")
     end
   end
 end
