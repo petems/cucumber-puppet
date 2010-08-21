@@ -20,19 +20,19 @@ module CucumberPuppet::Helper
       path.pop
     elsif cwd.match('features/modules$')
       # <puppetdir>/features/modules
-      path.pop(2)
+      2.times { path.pop }
     elsif cwd.match('features/modules/[^/]*$')
       # <puppetdir>/features/modules/$module
-      path.pop(3)
+      3.times { path.pop }
     elsif cwd.match('modules$')
       # <puppetdir>/modules
       path.pop
     elsif cwd.match('/modules/[^/]*$')
       # <puppetdir>/modules/$module
-      path.pop(2)
+      2.times { path.pop }
     elsif cwd.match('/modules/[^/]*/features$')
       # <puppetdir>/modules/$module/features
-      path.pop(3)
+      3.times { path.pop }
     end
 
     path.join('/')

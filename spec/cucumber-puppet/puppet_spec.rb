@@ -54,6 +54,7 @@ describe CucumberPuppet do
     before(:each) do
       Puppet.stub(:parse_config)
       @node = mock("node", :name => 'testnode').as_null_object
+      @node.stub(:is_a?).and_return(Puppet::Node)
       Puppet::Node.stub(:new).and_return(@node)
       Puppet::Resource::Catalog.stub(:find)
     end
@@ -65,6 +66,10 @@ describe CucumberPuppet do
     it 'should merge facts into the node' do
       @node.should_receive(:merge).with(c.facts)
       c.compile_catalog
+    end
+    it 'should not merge facts into the node, if called with a node object' do
+      @node.should_not_receive(:merge)
+      c.compile_catalog(@node)
     end
     it 'should find the node`s catalog' do
       Puppet::Resource::Catalog.should_receive(:find).with(@node.name, :use_node => @node)
