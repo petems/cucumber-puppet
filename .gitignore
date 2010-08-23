@@ -1,4 +1,5 @@
 *.swp
 man/*.1
 man/*.7
+man/*.html
 pkg
