@@ -51,4 +51,4 @@ http://github.com/nistude/cucumber-puppet/issues
 
 ## SEE ALSO
 
-cucumber-puppet(1), tutorial(7)
+cucumber-puppet(1)

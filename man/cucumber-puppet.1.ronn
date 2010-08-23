@@ -102,13 +102,14 @@ http://github.com/nistude/cucumber-puppet/issues
 
 ## SEE ALSO
 
-cucumber-puppet-gen(1), tutorial(7)
+cucumber-puppet-gen(1)
 
 Behavior Driven Development:
+  http://behaviour-driven.org/
   http://en.wikipedia.org/wiki/Behavior\_driven\_development
 
 Cucumber:
   http://cukes.info/
 
 Puppet:
-  http://puppetlabs.com/puppet/
+  http://www.puppetlabs.com/puppet/introduction/
