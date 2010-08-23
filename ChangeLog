@@ -1,6 +1,8 @@
 0.0.6
 - compile_catalog() takes a Puppet::Node as optional argument:
   compile_catalog(YAML.load_file("hostname.yaml"))
+- add man pages for cucumber-puppet and cucumber-puppet-gen
+- merge several steps from my puppet setup at work
 
 0.0.5
 - add rspec specs for selftest
