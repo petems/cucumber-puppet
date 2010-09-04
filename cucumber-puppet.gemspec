@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     "man/cucumber-puppet-gen.1",
     "VERSION.yml",
   ] + Dir.glob("lib/generators/world/**/*.rb")
-  s.homepage = "http://github.com/nistude/cucumber-puppet/"
+  s.homepage = "http://projects.puppetlabs.com/projects/cucumber-puppet"
   s.name = "cucumber-puppet"
   s.summary = "Puppet catalog testing with Cucumber"
 
