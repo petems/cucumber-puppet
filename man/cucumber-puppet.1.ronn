@@ -1,4 +1,4 @@
-# cucumber-puppet(1) -- Puppet manifest testing with Cucumber
+# cucumber-puppet(1) -- Puppet catalog testing with Cucumber
 
 ## SYNOPSIS
 
@@ -6,7 +6,7 @@
 
 ## DESCRIPTION
 
-`cucumber-puppet` is a tool for behavioral testing of Puppet manifests. It
+`cucumber-puppet` is a tool for behavioral testing of Puppet catalogs. It
 provides the glue necessary to access Puppet's data structures from Cucumber's
 step definitions.
 

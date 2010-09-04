@@ -1,6 +1,6 @@
 # cucumber-puppet
 
-`cucumber-puppet` is a tool for behavioral testing of Puppet manifests. It
+`cucumber-puppet` is a tool for behavioral testing of Puppet catalogs. It
 provides the glue necessary to access Puppet's data structures from Cucumber's
 step definitions.
 
@@ -75,7 +75,7 @@ cucumber-puppet to your needs in *./features/support/hooks.rb*.
 
 ## Writing features
 
-cucumber-puppet assumes you have your Puppet manifest organized in modules and
+cucumber-puppet assumes you have your Puppet manifests organized in modules and
 does the same with your feature files. Depending on your current working
 directory, `cucumber-puppet-gen` will create new features either in *~puppet/features/modules/foo/* (this is the default) or in *~puppet/modules/foo/features/* (in case your current working directory is somewhere inside *~/puppet/modules/*.
 
