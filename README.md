@@ -44,7 +44,8 @@ Run that feature
 
     $ cucumber-puppet features/modules/foo/bar.feature
 
-Further documentation is available at http://projects.puppetlabs.com/projects/cucumber-puppet/wiki/.
+Further documentation is available in the
+[wiki](http://projects.puppetlabs.com/projects/cucumber-puppet/wiki/).
 
 # Acknowledgements
 
