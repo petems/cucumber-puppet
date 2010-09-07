@@ -76,9 +76,4 @@ class CucumberPuppet
   def get_resource(title)
     @catalog.resource(title)
   end
-  # XXX add deprecation warning for resource()
-  def resource(title)
-    get_resource(title)
-  end
-
 end
