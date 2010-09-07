@@ -1,8 +1,8 @@
 # cucumber-puppet
 
-`cucumber-puppet` is a tool for behavioral testing of Puppet catalogs. It
-provides the glue necessary to access Puppet's data structures from Cucumber's
-step definitions.
+Cucumber-puppet is a tool for specifying Puppet catalog behavior by means of a
+catalog-wide policy. It uses Cucumber features as specifications and provides
+the necessary glue to access a node's catalog from Cucumber's step definitions.
 
 It is currently in alpha testing.
 
@@ -36,13 +36,19 @@ Initialise the infrastructure
 
     $ cucumber-puppet-gen world
 
-Create a feature *bar* for your Puppet module *foo*
+Create a default policy and adapt it to your needs
 
-    $ cucumber-puppet-gen feature foo bar
+    $ cucumber-puppet-gen policy
+    $ vim features/catalog/policy.feature
 
-Run that feature
+Copy YAML node files into place
 
-    $ cucumber-puppet features/modules/foo/bar.feature
+    $ mkdir features/yaml
+    $ cp /var/lib/puppet/yaml/node/localhost.example.com.yaml features/yaml
+
+Apply your policy
+
+    $ cucumber-puppet features/catalog/policy.feature
 
 Further documentation is available in the
 [wiki](http://projects.puppetlabs.com/projects/cucumber-puppet/wiki/).
