@@ -32,6 +32,21 @@ module CucumberPuppetGenerators
     end
   end
 
+  class PolicyGenerator < Templater::Generator
+    include CucumberPuppet::Helper
+
+    def source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'policy')
+    end
+
+    desc <<-DESC
+      Generate a catalog policy
+        cucumber-puppet-gen policy
+    DESC
+
+    directory('catalog', 'catalog', 'features/catalog')
+  end
+
   class TestcaseGenerator < Templater::Generator
     extend CucumberPuppet::Helper
 
@@ -74,6 +89,7 @@ module CucumberPuppetGenerators
 
   desc "Generators for cucumber-puppet"
   add :feature, FeatureGenerator
+  add :policy, PolicyGenerator
   add :testcase, TestcaseGenerator
   add :world, WorldGenerator
 
