@@ -42,8 +42,9 @@ Create the same feature file to be bundled with the module:
 
 ## REPORTING BUGS
 
-Report bugs to <cucumber-puppet@erisiandiscord.de> or go to
-http://github.com/nistude/cucumber-puppet/issues
+Please report any bugs at
+http://projects.puppetlabs.com/projects/cucumber-puppet/issues/new
+or send an email to <cucumber-puppet@erisiandiscord.de>.
 
 ## COPYRIGHT
 

@@ -41,9 +41,11 @@ class CucumberPuppet
   #   @manifest defaults to @confdir + '/manifests/site.pp'
   #
   def compile_catalog( node = nil )
-    Puppet[:confdir] = @confdir
-    Puppet[:manifest] = @manifest
+    Puppet.settings.handlearg("--confdir", @confdir)
     Puppet.parse_config
+    # reset confdir in case it got overwritten
+    Puppet.settings.handlearg("--confdir", @confdir)
+    Puppet.settings.handlearg("--manifest", @manifest)
 
     unless node.is_a?(Puppet::Node)
       node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
@@ -74,9 +76,4 @@ class CucumberPuppet
   def get_resource(title)
     @catalog.resource(title)
   end
-  # XXX add deprecation warning for resource()
-  def resource(title)
-    get_resource(title)
-  end
-
 end

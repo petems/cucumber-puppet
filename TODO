@@ -1,8 +1,9 @@
-- manifest testing -> catalog testing
-- generate host tests from template (one feature per yaml file)
+- generate host tests from template (one Feature/Scenario per yaml file)
 - manage 'official' steps (how do others like aruba do this?)
   - steps outside project, but documented
   - update steps in project (permits local modifications, but how to preserve
     them?)
 - tutorial
 - rework documentation
+- cleanup code
+- catalog policy: how to deal with large features with many Then steps
