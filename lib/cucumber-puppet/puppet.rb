@@ -73,7 +73,7 @@ class CucumberPuppet
   end
 
   # Returns an Object with the given title from catalog.
-  def get_resource(title)
+  def resource(title)
     @catalog.resource(title)
   end
 end
