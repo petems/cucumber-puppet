@@ -1,5 +1,5 @@
 Given /^a node specified by "([^\"]*)"$/ do |file|
-  # file: yaml node file, usually from /var/lib/puppet/yaml/node
+  # file: yaml node file
   fail("Cannot find node facts #{file}.") unless File.exist?(file)
   @node = YAML.load_file(file)
   file("Invalid node file #{file}, this should come from " +
@@ -12,35 +12,25 @@ end
 
 Then /^all "([^\"]*)" should resolve$/ do |parameter|
   # paramter: before, notify, require, or subscribe
-  @catalog.resources.each do |name|
-    resource = get_resource(name)
+  catalog_resources.each do |resource|
+    dependency = [ resource[parameter] ].flatten.compact
 
-    dependency = resource[parameter]
-    next unless dependency
-    if dependency.is_a?(Array)
-      dependency.each do |dep|
-        fail("#{resource} cannot #{parameter} #{dep}, not in catalog.") \
-          unless get_resource(dep.to_s)
-      end
-    elsif dependency.is_a?(Puppet::Resource::Reference)
-      fail("#{resource} cannot #{parameter} #{dependency}, not in catalog.") \
-        unless get_resource(dependency.to_s)
-    else
-      fail("#{resource} #{parameter} #{dependency} of unknown class.")
+    dependency.each do |dep|
+      fail("#{resource} cannot #{parameter} #{dep}, not in catalog.") \
+        unless resource(dep.to_s)
     end
   end
 end
 
 Then /^all file sources should exist in git repository$/ do
-  @catalog.resources.each do |name|
-    next unless name.match(/^File/)
-    file = get_resource(name)
+  catalog_resources.each do |resource|
+    next unless resource.type == "File"
 
-    next unless file['source']
-    source = file['source']
+    source = resource['source']
+    next unless source
 
     filepath = source.gsub(%r{^puppet:///([^/]*)/(.*)$}, 'modules/\1/files/\2')
-    fail("#{name}: source #{filepath} not in git repository.") unless
+    fail("#{resource}: source #{filepath} not in git repository.") unless
       system("git cat-file -e :#{filepath} > /dev/null 2>&1")
   end
 end

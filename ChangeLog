@@ -1,6 +1,6 @@
 0.1.0
 - provide a default catalog policy with 'cucumber-puppet-gen policy'
-- resource() renamed to get_resource()
+- make it work with puppet 2.6
 
 0.0.6
 - compile_catalog() takes a Puppet::Node as optional argument:
