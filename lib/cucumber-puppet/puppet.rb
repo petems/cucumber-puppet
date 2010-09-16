@@ -77,6 +77,7 @@ class CucumberPuppet
     @catalog.resource(title)
   end
 
+  # Returns an Array with the catalog's Puppet::Resource objects
   def catalog_resources
     @catalog.resources.map do |r|
       if r.is_a?(Puppet::Resource)
