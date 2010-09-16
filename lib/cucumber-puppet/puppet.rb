@@ -76,4 +76,18 @@ class CucumberPuppet
   def resource(title)
     @catalog.resource(title)
   end
+
+  def catalog_resources
+    @catalog.resources.map do |r|
+      if r.is_a?(Puppet::Resource)
+        # puppet 2.6 and newer
+        r
+      elsif r.is_a?(String)
+        # puppet 0.25 and older
+        resource(r)
+      else
+        raise "Unknown resource object #{r.class}"
+      end
+    end
+  end
 end
