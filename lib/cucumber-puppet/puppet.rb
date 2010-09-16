@@ -77,8 +77,10 @@ class CucumberPuppet
     @catalog.resource(title)
   end
 
-  # Returns an Array with the catalog's Puppet::Resource objects
+  # Returns an Array with the catalog's Puppet::Resource objects.
   def catalog_resources
+    # This method exists to supply a common interface to the puppet catalog
+    # for different versions of puppet.
     @catalog.resources.map do |r|
       if r.is_a?(Puppet::Resource)
         # puppet 2.6 and newer
