@@ -82,12 +82,41 @@ describe CucumberPuppet do
     end
   end
 
-  describe '#get_resource' do
+  describe '#resource' do
     it 'should return an entry from the catalog' do
       c = TestCucumberPuppet.new
       c.catalog = mock("catalog").as_null_object
       c.catalog.should_receive(:resource).with("foo")
-      c.get_resource("foo")
+      c.resource("foo")
+    end
+  end
+
+  describe '#catalog_resources' do
+    let(:c) do
+      TestCucumberPuppet.new.tap do |c|
+        c.catalog = mock("catalog").as_null_object
+      end
+    end
+
+    context 'puppet version 0.25 and older' do
+      it 'should return an Array of Puppet::Resource objects' do
+        c.catalog.stub(:resources).and_return([ 'one', 'two'])
+        c.catalog.stub(:resource).and_return(Puppet::Resource.new("Class", "x"))
+        c.catalog_resources.each do |r|
+          r.should be_a(Puppet::Resource)
+        end
+      end
+    end
+
+    context 'puppet version 2.6 and newer' do
+      it 'should return an Array of Puppet::Resource objects' do
+        one = Puppet::Resource.new("Class", "one")
+        two = Puppet::Resource.new("Class", "two")
+        c.catalog.stub(:resources).and_return([ one, two ])
+        c.catalog_resources.each do |r|
+          r.should be_a(Puppet::Resource)
+        end
+      end
     end
   end
 end
