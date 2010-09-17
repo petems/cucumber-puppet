@@ -7,6 +7,8 @@ Given /^a node specified by "([^\"]*)"$/ do |file|
 end
 
 When /^I compile its catalog$/ do
+  # XXX workaround storeconfig warnings
+  # Puppet::Util::Log.level = :err
   compile_catalog(@node)
 end
 
