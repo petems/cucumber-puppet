@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
     "lib/cucumber-puppet.rb",
     "lib/cucumber-puppet/helper.rb",
     "lib/cucumber-puppet/puppet.rb",
+    "lib/cucumber-puppet/steps.rb",
     "lib/cucumber-puppet/rake/task.rb",
     "lib/generators/feature/%feature_name%.feature",
     "lib/generators/policy/catalog/policy.feature",
