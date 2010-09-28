@@ -2,7 +2,7 @@ Given /^a node specified by "([^\"]*)"$/ do |file|
   # file: yaml node file
   fail("Cannot find node facts #{file}.") unless File.exist?(file)
   @node = YAML.load_file(file)
-  file("Invalid node file #{file}, this should come from " +
+  fail("Invalid node file #{file}, this should come from " +
     "/var/lib/puppet/yaml/node.") unless @node.is_a?(Puppet::Node)
 end
 
