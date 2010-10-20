@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.version = "0.0.6"
+  s.version = "0.1.0"
 
   s.author = "Nikolay Sturm"
   s.description = "cucumber-puppet is a tool for behavioral testing of Puppet catalogs"
