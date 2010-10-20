@@ -18,3 +18,7 @@ Feature: Test cucumber-puppet against various Puppet releases
       | 0.25.2 |
       | 0.25.3 |
       | 0.25.4 |
+      | 0.25.5 |
+      | 2.6.0  |
+      | 2.6.1  |
+      | 2.6.2  |
