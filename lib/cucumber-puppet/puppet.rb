@@ -7,7 +7,7 @@ class CucumberPuppet
   # Returns a new CucumberPuppet object.
   def initialize
     @confdir = "/etc/puppet"
-    @manifest = @confdir + "/manifest/site.pp"
+    @manifest = @confdir + "/manifests/site.pp"
 
     # default facts
     @facts = {
