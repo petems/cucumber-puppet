@@ -56,7 +56,9 @@ describe CucumberPuppet do
       @node = mock("node", :name => 'testnode').as_null_object
       @node.stub(:is_a?).and_return(Puppet::Node)
       Puppet::Node.stub(:new).and_return(@node)
-      Puppet::Resource::Catalog.stub(:find)
+      @catalog = mock("catalog").as_null_object
+      Puppet::Resource::Catalog.stub(:find).and_return(@catalog)
+      @catalog.stub(:resources).and_return([])
     end
 
     it 'should parse the puppet config' do
@@ -77,7 +79,7 @@ describe CucumberPuppet do
     end
     it 'should fall back to puppet`s 0.24 interface in case of NameError' do
       Puppet::Resource::Catalog.stub(:find).and_raise(NameError)
-      Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node)
+      Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node).and_return(@catalog)
       c.compile_catalog
     end
   end
