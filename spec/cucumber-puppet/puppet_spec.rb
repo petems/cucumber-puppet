@@ -56,9 +56,9 @@ describe CucumberPuppet do
       @node = mock("node", :name => 'testnode').as_null_object
       @node.stub(:is_a?).and_return(Puppet::Node)
       Puppet::Node.stub(:new).and_return(@node)
-      @catalog = mock("catalog").as_null_object
-      Puppet::Resource::Catalog.stub(:find).and_return(@catalog)
+      @catalog = mock("catalog")
       @catalog.stub(:resources).and_return([])
+      Puppet::Resource::Catalog.stub(:find).and_return(@catalog)
     end
 
     it 'parses the puppet config' do
@@ -90,9 +90,20 @@ describe CucumberPuppet do
       Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node).and_return(@catalog)
       c.compile_catalog
     end
+
+    it 'collects resource aliases' do
+      r1 = mock("r1")
+      r1.stub(:[]).with(:alias).and_return("foo")
+      r1.stub(:type).and_return("Type")
+      @catalog.stub(:resources).and_return(["r1"])
+      @catalog.stub(:resource).with("r1").and_return(r1)
+      c.compile_catalog
+      c.instance_variable_get(:@aliases).should have_key("Type[foo]")
+    end
   end
 
   describe '#resource' do
+    # XXX duplication
     context 'given the name of a resource' do
       it 'returns an entry from the catalog' do
         c = TestCucumberPuppet.new
@@ -107,8 +118,8 @@ describe CucumberPuppet do
         c = TestCucumberPuppet.new
         c.catalog = mock("catalog")
         c.catalog.stub(:resource).and_return(nil)
-        c.instance_variable_set(:@aliases, { "foo" => true })
-        c.resource("foo").should be_true
+        c.instance_variable_set(:@aliases, { "foo" => "bar" })
+        c.resource("foo").should == "bar"
       end
     end
   end
