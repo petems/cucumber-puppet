@@ -1,3 +1,12 @@
 class test {
-  file { "foo": ensure => present }
+  file { "foo":
+    alias => [ "bar", "baz" ],
+    ensure => present,
+  }
+
+  # ensure aliases are expanded
+  file { "foo2":
+    require => File["bar"],
+    ensure => present,
+  }
 }
