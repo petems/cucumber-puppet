@@ -84,11 +84,10 @@ class CucumberPuppet
     end
   end
 
-  # Returns an Object with the given title from catalog.
+  # Returns an Object with the given title from catalog, taking aliases
+  # into account.
   def resource(title)
-    r = @catalog.resource(title)
-    r = @aliases[title] unless r
-    r
+    @catalog.resource(title) || @aliases[title]
   end
 
   # Returns an Array with the catalog's Puppet::Resource objects.
