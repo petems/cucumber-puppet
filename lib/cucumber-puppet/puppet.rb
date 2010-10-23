@@ -95,12 +95,12 @@ class CucumberPuppet
     # This method exists to supply a common interface to the puppet catalog
     # for different versions of puppet.
     @catalog.resources.map do |r|
-      if r.is_a?(Puppet::Resource)
-        # puppet 2.6 and newer
-        r
-      elsif r.is_a?(String)
+      if r.is_a?(String)
         # puppet 0.25 and older
         resource(r)
+      elsif r.is_a?(Puppet::Resource)
+        # puppet 2.6 and newer
+        r
       else
         raise "Unknown resource object #{r.class}"
       end
