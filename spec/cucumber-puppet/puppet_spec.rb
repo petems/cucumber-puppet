@@ -20,19 +20,19 @@ class TestCucumberPuppet < CucumberPuppet
 end
 
 describe CucumberPuppet do
-  describe 'a new object' do
-    it 'should set puppet`s logdestination to console' do
+  describe '#new' do
+    it 'sets puppet`s logdestination to console' do
       Puppet::Util::Log.should_receive(:newdestination).with(:console)
       TestCucumberPuppet.new
     end
-    it 'should set puppet`s loglevel to notice' do
+    it 'sets puppet`s loglevel to notice' do
       Puppet::Util::Log.should_receive(:level=).with(:notice)
       TestCucumberPuppet.new
     end
   end
 
   describe '#debug' do
-    it 'should set puppet`s loglevel to debug' do
+    it 'sets puppet`s loglevel to debug' do
       c = TestCucumberPuppet.new
       Puppet::Util::Log.should_receive(:level=).with(:debug)
       c.debug
@@ -41,7 +41,7 @@ describe CucumberPuppet do
 
   describe '#klass=' do
     # TODO add support for multiple classes by splitting the string
-    it 'should create the array of classes from a string' do
+    it 'creates the array of classes from a string' do
       c = TestCucumberPuppet.new
       c.klass = "foo"
       c.klass.should == ["foo"]
@@ -65,18 +65,26 @@ describe CucumberPuppet do
       Puppet.should_receive(:parse_config)
       c.compile_catalog
     end
-    it 'merges facts into the node' do
-      @node.should_receive(:merge).with(c.facts)
-      c.compile_catalog
+
+    context 'when called without argument' do
+      it 'merges facts into the node' do
+        @node.should_receive(:merge).with(c.facts)
+        c.compile_catalog
+      end
     end
-    it 'does not merge facts into the node, if called with a node object' do
-      @node.should_not_receive(:merge)
-      c.compile_catalog(@node)
+
+    context 'when called with a node object as argument' do
+      it 'does not merge facts into the node' do
+        @node.should_not_receive(:merge)
+        c.compile_catalog(@node)
+      end
     end
+
     it 'finds the node`s catalog' do
       Puppet::Resource::Catalog.should_receive(:find).with(@node.name, :use_node => @node)
       c.compile_catalog
     end
+
     it 'falls back to puppet`s 0.24 interface in case of NameError' do
       Puppet::Resource::Catalog.stub(:find).and_raise(NameError)
       Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node).and_return(@catalog)
@@ -113,7 +121,7 @@ describe CucumberPuppet do
     end
 
     context 'puppet version 0.25 and older' do
-      it 'should return an Array of Puppet::Resource objects' do
+      it 'returns an Array of Puppet::Resource objects' do
         c.catalog.stub(:resources).and_return([ 'one', 'two'])
         c.catalog.stub(:resource).and_return(Puppet::Resource.new("Class", "x"))
         c.catalog_resources.each do |r|
@@ -123,7 +131,7 @@ describe CucumberPuppet do
     end
 
     context 'puppet version 2.6 and newer' do
-      it 'should return an Array of Puppet::Resource objects' do
+      it 'returns an Array of Puppet::Resource objects' do
         one = Puppet::Resource.new("Class", "one")
         two = Puppet::Resource.new("Class", "two")
         c.catalog.stub(:resources).and_return([ one, two ])
