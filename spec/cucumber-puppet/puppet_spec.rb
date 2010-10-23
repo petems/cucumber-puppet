@@ -61,23 +61,23 @@ describe CucumberPuppet do
       @catalog.stub(:resources).and_return([])
     end
 
-    it 'should parse the puppet config' do
+    it 'parses the puppet config' do
       Puppet.should_receive(:parse_config)
       c.compile_catalog
     end
-    it 'should merge facts into the node' do
+    it 'merges facts into the node' do
       @node.should_receive(:merge).with(c.facts)
       c.compile_catalog
     end
-    it 'should not merge facts into the node, if called with a node object' do
+    it 'does not merge facts into the node, if called with a node object' do
       @node.should_not_receive(:merge)
       c.compile_catalog(@node)
     end
-    it 'should find the node`s catalog' do
+    it 'finds the node`s catalog' do
       Puppet::Resource::Catalog.should_receive(:find).with(@node.name, :use_node => @node)
       c.compile_catalog
     end
-    it 'should fall back to puppet`s 0.24 interface in case of NameError' do
+    it 'falls back to puppet`s 0.24 interface in case of NameError' do
       Puppet::Resource::Catalog.stub(:find).and_raise(NameError)
       Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node).and_return(@catalog)
       c.compile_catalog
@@ -85,11 +85,23 @@ describe CucumberPuppet do
   end
 
   describe '#resource' do
-    it 'should return an entry from the catalog' do
-      c = TestCucumberPuppet.new
-      c.catalog = mock("catalog").as_null_object
-      c.catalog.should_receive(:resource).with("foo")
-      c.resource("foo")
+    context 'given the name of a resource' do
+      it 'returns an entry from the catalog' do
+        c = TestCucumberPuppet.new
+        c.catalog = mock("catalog").as_null_object
+        c.catalog.should_receive(:resource).with("foo")
+        c.resource("foo")
+      end
+    end
+
+    context 'given the alias of a resource' do
+      it 'returns an entry from the catalog' do
+        c = TestCucumberPuppet.new
+        c.catalog = mock("catalog")
+        c.catalog.stub(:resource).and_return(nil)
+        c.instance_variable_set(:@aliases, { "foo" => true })
+        c.resource("foo").should be_true
+      end
     end
   end
 
