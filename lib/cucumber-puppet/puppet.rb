@@ -6,6 +6,9 @@ require 'puppet/network/client'
 class CucumberPuppet
   # Returns a new CucumberPuppet object.
   def initialize
+    # resources' alias metaparameter
+    @aliases = {}
+
     @confdir = "/etc/puppet"
     @manifest = @confdir + "/manifests/site.pp"
 
@@ -70,11 +73,22 @@ class CucumberPuppet
       end
       exit 1
     end
+
+    # XXX could not find this in puppet
+    catalog_resources.each do |resource|
+      next unless resource[:alias]
+      resource[:alias].each do |a|
+        # "foo" -> "Package[foo]"
+        @aliases["#{resource.type}[#{a}]"] = resource
+      end
+    end
   end
 
   # Returns an Object with the given title from catalog.
   def resource(title)
-    @catalog.resource(title)
+    r = @catalog.resource(title)
+    r = @aliases[title] unless r
+    r
   end
 
   # Returns an Array with the catalog's Puppet::Resource objects.
