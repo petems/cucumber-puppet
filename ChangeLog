@@ -1,3 +1,6 @@
+0.2.0
+- add support for parameterised classes, resolves #5895
+
 0.1.1
 - fix #5066, add support for resource aliases
 
