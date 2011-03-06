@@ -50,7 +50,7 @@ class CucumberPuppet
     Puppet.settings.handlearg("--confdir", @confdir)
     Puppet.settings.handlearg("--manifest", @manifest)
 
-    unless node.is_a?(Puppet::Node)
+     unless node.is_a?(Puppet::Node)
       node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
       node.merge(@facts)
     end
