@@ -2,6 +2,14 @@ Given /^a node of class "([^\"]*)"$/ do |klass|
   @klass = klass
 end
 
+Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
+  parameters = {}
+  params.hashes.each do |param|
+    parameters[param['name']] = param['value']
+  end
+  @klass = { klass => parameters }
+end
+
 Given /^a node named "([^\"]*)"$/ do |name|
   @facts['hostname'] = name
 end
