@@ -34,8 +34,14 @@ class CucumberPuppet
 
   # Define Puppet classes to include in a feature's testnode.
   def klass=(klass)
-    # XXX sth like klass.split(/,/) and remove whitespace
-    @klass = klass.to_a
+    if klass.class == String
+      # XXX sth like klass.split(/,/) and remove whitespace
+      @klass = klass.to_a
+    elsif klass.class == Hash
+      @klass = klass
+    else
+      raise "unsupported class #{klass.class} for klass."
+    end
   end
 
   # Compile catalog for configured testnode.
@@ -50,7 +56,7 @@ class CucumberPuppet
     Puppet.settings.handlearg("--confdir", @confdir)
     Puppet.settings.handlearg("--manifest", @manifest)
 
-     unless node.is_a?(Puppet::Node)
+    unless node.is_a?(Puppet::Node)
       node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
       node.merge(@facts)
     end

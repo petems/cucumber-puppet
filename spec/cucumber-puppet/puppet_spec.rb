@@ -43,8 +43,19 @@ describe CucumberPuppet do
     # TODO add support for multiple classes by splitting the string
     it 'creates the array of classes from a string' do
       c = TestCucumberPuppet.new
-      c.klass = "foo"
-      c.klass.should == ["foo"]
+      c.klass = 'foo'
+      c.klass.should == ['foo']
+    end
+    it 'passes a hash through' do
+      c = TestCucumberPuppet.new
+      c.klass = { 'foo' => 'bar' }
+      c.klass.should == { 'foo' => 'bar' }
+      c.klass = { 'foo' => { 'bar' => 'baz' } }
+      c.klass.should == { 'foo' => { 'bar' => 'baz' } }
+    end
+    it 'raises an error otherwise' do
+      c = TestCucumberPuppet.new
+      expect { c.klass = 1 }.to raise_error
     end
   end
 
