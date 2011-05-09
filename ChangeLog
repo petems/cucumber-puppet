@@ -1,3 +1,7 @@
+0.2.1
+- add more flexible way to specify puppet configuration options
+  from mfournier https://github.com/mfournier
+
 0.2.0
 - add support for parameterised classes, resolves #5895
 
