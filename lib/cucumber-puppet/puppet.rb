@@ -48,10 +48,6 @@ class CucumberPuppet
   end
 
   # Compile catalog for configured testnode.
-  #
-  #   @confdir defaults to '/etc/puppet'
-  #   @manifest defaults to @confdir + '/manifests/site.pp'
-  #
   def compile_catalog( node = nil )
     Puppet.settings.handlearg("--confdir", @puppetcfg['confdir'])
     Puppet.parse_config
