@@ -9,8 +9,11 @@ class CucumberPuppet
     # resources' alias metaparameter
     @aliases = {}
 
-    @confdir = "/etc/puppet"
-    @manifest = @confdir + "/manifests/site.pp"
+    # default puppet configuration
+    @puppetcfg = {
+      'confdir' => "/etc/puppet",
+      'manifest' => "/etc/puppet/manifests/site.pp",
+    }
 
     # default facts
     @facts = {
@@ -50,11 +53,12 @@ class CucumberPuppet
   #   @manifest defaults to @confdir + '/manifests/site.pp'
   #
   def compile_catalog( node = nil )
-    Puppet.settings.handlearg("--confdir", @confdir)
+    Puppet.settings.handlearg("--confdir", @puppetcfg['confdir'])
     Puppet.parse_config
     # reset confdir in case it got overwritten
-    Puppet.settings.handlearg("--confdir", @confdir)
-    Puppet.settings.handlearg("--manifest", @manifest)
+    @puppetcfg.each do |option,value|
+      Puppet.settings.handlearg("--#{option}", value)
+    end
 
     unless node.is_a?(Puppet::Node)
       node = Puppet::Node.new(@facts['hostname'], :classes => @klass)
