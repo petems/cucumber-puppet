@@ -3,104 +3,53 @@
 require 'rubygems'
 require 'cucumber-puppet'
 require 'cucumber-puppet/helper'
-require 'optparse'
 
 include CucumberPuppet::Helper
 
-options = []
-opts = OptionParser.new do |o|
-  o.banner = "Usage: cucumber-puppet [options] <feature> [<feature> ...]"
+def usage
+  puts <<EOH
+Usage: cucumber-puppet [options] <feature> [<feature> ...]
 
-  o.on('-b', '--backtrace', 'Show full backtrace for all errors') do
-    options << "--backtrace "
-  end
+    -h, --help     Show this help.
+        --version  Show version.
 
-  o.on('-e', '--exclude PATTERN',
-       'Exclude files matching PATTERN') do |pattern|
-    options << "--exclude #{pattern}"
-  end
+All other options are passed directly to cucumber.
 
-  o.on('-f', '--format FORMAT',
-       'How to format features (default: pretty)',
-       '  see "cucumber --help" for details') do |format|
-    options << "--format #{format}"
-  end
-
-  o.on('-h', '--help', 'Show this message') do
-    puts opts
-    exit
-  end
-
-  o.on('-n', '--name NAME',
-       'Only run matching feature elements',
-       '  see "cucumber --help" for details') do |n|
-    options << "--name #{n}"
-  end
-
-  o.on('-o', '--out FILE|DIR',
-       'Write output to file/directory',
-       '  see "cucumber --help" for details') do |f|
-    options << "--out #{f}"
-  end
-
-  o.on('-t', '--tags TAG_EXPRESSION',
-       'Only run features/scenarios matching expr',
-       '  see "cucumber --help" for details') do |t|
-    options << "--tags #{t}"
-  end
-
-  o.on('-v', '--verbose', 'Show files and features loaded') do
-    options << "--verbose"
-  end
-
-  o.on('--version', 'Show version number') do
-    puts CucumberPuppet::VERSION
-    exit
-  end
-
-  o.on('-x', '--expand', 'Expand Scenario Outline Tables in output') do
-    options << "--expand"
-  end
-end
-
-begin
-  opts.parse!
-rescue OptionParser::InvalidOption
-  puts opts
-  exit 1
+EOH
 end
 
 unless ARGV[0]
-  puts opts
+  usage
   exit 1
 end
 
-command = []
-command << "cucumber --strict"
+rootdir = File.expand_path(find_root)
+args = Array.new(ARGV)
+args.each do |arg|
+  if arg == '--version'
+    puts CucumberPuppet::VERSION
+    exit
+  elsif arg == '-h' or arg == '--help'
+    usage
+  else
+    next if arg =~ /^-/
+    # this arg should be a filename
+    next if not File.exists?(arg)
 
-root = find_root
-command << "--require #{root}/features"
-command << options
-
-abs_root = File.expand_path(root)
-ARGV.each do |f|
-  if not File.exists?(f)
-    puts "No such file or directory: #{f}"
-    exit 1
-  end
-
-  abs_f = File.expand_path(f).split('/')
-  until abs_f.empty?
-    if abs_f.last == 'features'
-      command << "--require " + abs_f.join('/')
-      break
-    elsif abs_f.join('/') == abs_root
-      break
+    file = File.expand_path(arg).split('/')
+    until file.empty?
+      if file.last == 'features'
+        ARGV.unshift "--require", file.join('/')
+        break
+      elsif file.join('/') == rootdir
+        break
+      end
+      file.pop
     end
-    abs_f.pop
   end
-
-  command << f
 end
 
-system(command.join(' ')) ? exit(0) : exit(1)
+ARGV.unshift "--require", "#{rootdir}/features"
+ARGV.unshift "--strict"
+
+load Gem.bin_path('cucumber')

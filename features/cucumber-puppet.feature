@@ -6,18 +6,13 @@ Feature: cucumber-puppet command line options
   Background:
     Given an uninitialized directory tree
 
-  Scenario Outline: invalid command line
-    When I run cucumber-puppet with option "<option>"
+  Scenario: without any option or feature
+    When I run cucumber-puppet with option ""
     Then it should show usage information
-
-    Examples:
-      | option |
-      | |
-      | --invalid |
 
   Scenario: with non-existent feature
     When I run cucumber-puppet with option "invalid"
-    Then it should show "No such file or directory:"
+    Then it should show "No such file or directory"
 
   Scenario Outline: flags, that should be there
     When I run cucumber-puppet with option "--help"
@@ -26,7 +21,8 @@ Feature: cucumber-puppet command line options
     Examples:
       | option |
       | --backtrace |
-      | --expand |
+      | --help |
+      | --version |
 
   Scenario Outline: disable testcase
     When I generate "world"
