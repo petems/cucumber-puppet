@@ -39,7 +39,7 @@ class CucumberPuppetRakeTask
     desc @desc
     task @task_name do
       command = []
-      command << "cucumber-puppet"
+      command << Gem.bin_path('cucumber-puppet', 'cucumber-puppet')
       command << cucumber_opts
       command << "features"
       command << Dir.glob("modules/*/features")
