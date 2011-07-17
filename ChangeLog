@@ -1,3 +1,6 @@
+0.3.2
+- use Gem.bin_path in rake task as well
+
 0.3.1
 - load cucumber the gem way instead of using system(), fixes #8431
 
