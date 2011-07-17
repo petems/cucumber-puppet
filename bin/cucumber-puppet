@@ -54,4 +54,4 @@ end
 ARGV.unshift "--require", "#{rootdir}/features"
 ARGV.unshift "--strict"
 
-load Gem.bin_path('cucumber')
+load Gem.bin_path('cucumber', 'cucumber')
