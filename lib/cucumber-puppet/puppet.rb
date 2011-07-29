@@ -74,6 +74,8 @@ class CucumberPuppet
       end
       if detail.is_a?(XMLRPC::FaultException)
         $stderr.puts detail.message
+      elsif detail.is_a?(Puppet::Error)
+        raise Puppet::Error detail.message
       else
         $stderr.puts detail
       end

@@ -12,7 +12,12 @@ Given /^I use storeconfigs$/ do
 end
 
 When /^I compile its catalog$/ do
-  compile_catalog(@node)
+  @compile_error = false
+  begin
+    compile_catalog(@node)
+  rescue
+    @compile_error = true
+  end
 end
 
 Then /^all resource dependencies should resolve$/ do
