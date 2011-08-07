@@ -10,3 +10,9 @@ class test {
     ensure => present,
   }
 }
+
+class parameterized($include_foo=false) {
+  if $include_foo == true {
+    file { "foo": }
+  }
+}

@@ -6,3 +6,10 @@ Feature: test case
     Then all resource dependencies should resolve
     Then there should be a resource "File[foo]"
     And the state should be "present"
+
+  Scenario: parameterized
+    Given a node of class "parameterized" with parameters:
+      | name        | value |
+      | include_foo | true  |
+    When I compile the catalog
+    Then there should be a resource "File[foo]"
