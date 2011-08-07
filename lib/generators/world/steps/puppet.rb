@@ -38,7 +38,7 @@ When /^I compile the catalog$/ do
 end
 
 Then /^compilation should fail$/ do
-  fail "compilation was expected to fail. it did not fail." unless @compile_error == true
+  fail "Compilation was expected to fail but did not." unless @compile_error == true
 end
 
 Then /^the [a-z]* should have "([^\"]*)" set to "(false|true)"$/ do |res, bool|

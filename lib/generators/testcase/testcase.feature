@@ -13,3 +13,10 @@ Feature: test case
       | include_foo | true  |
     When I compile the catalog
     Then there should be a resource "File[foo]"
+
+  Scenario: parameterized with bad argument
+    Given a node of class "parameterized" with parameters:
+      | name          | value |
+      | bad_parameter | true  |
+    When I compile the catalog
+    Then compilation should fail
