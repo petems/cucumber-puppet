@@ -1,5 +1,5 @@
 Given /^a node of class "([^\"]*)"$/ do |klass|
-  @klass = klass
+  @klass = @klass ? @klass.merge({klass => nil}) : {klass => nil}
 end
 
 Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
@@ -13,7 +13,7 @@ Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
       parameters[param['name']] = param['value']
     end
   end
-  @klass = { klass => parameters }
+  @klass = @klass ? @klass.merge({klass => parameters}) : {klass => parameters}
 end
 
 Given /^a node named "([^\"]*)"$/ do |name|
