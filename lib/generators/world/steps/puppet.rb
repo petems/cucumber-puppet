@@ -50,7 +50,27 @@ Then /^the [a-z]* should have "([^\"]*)" set to "(false|true)"$/ do |res, bool|
 end
 
 Then /^the [a-z]* should have an? "([^\"]*)" of "([^\"]*)"$/ do |property, value|
-  fail unless @resource[property] == value
+  value.gsub!('\n', "\n") # otherwise newlines don't get handled properly
+  if @resource[property].is_a?(Puppet::Resource)
+    prop = @resource[property].to_s
+  elsif @resource[property].kind_of?(Array)
+    if value =~ /, /
+      value = value.split(", ")
+    elsif value =~ /,/
+      value = value.split(",")
+    else
+      value = value.split
+    end
+
+    prop = @resource[property]
+  elsif @resource[property].is_a?(String)
+    prop = @resource[property]
+  else
+    fail "Class #{@resource[property].class} not supported. Please modify steps to accomodate."
+  end
+
+  fail "Resource #{@resource} had #{property}='#{@resource[property] ? @resource[property] : "<empty>"}', not '#{value}'" \
+    unless prop == value
 end
 
 Then /^the [a-z]* should notify "([^\"]*)"$/ do |res|
