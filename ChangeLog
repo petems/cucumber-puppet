@@ -1,3 +1,9 @@
+0.3.3
+- from Matthaus Litteken <mlitteken@gmail.com>
+  - add support to test for failed compilation
+  - add support for booleans in parameterized classes
+  - add support for arrays, content with newlines, Puppet::Resource objects
+
 0.3.2
 - use Gem.bin_path in rake task as well
 
