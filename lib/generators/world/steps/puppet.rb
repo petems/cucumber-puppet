@@ -26,7 +26,7 @@ Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
       parameters[param['name']] = param['value']
     end
   end
-  @klass = {klass => parameters}
+  @klass = { klass => parameters }
 end
 
 # And
