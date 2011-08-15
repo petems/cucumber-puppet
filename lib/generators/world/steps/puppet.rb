@@ -1,5 +1,18 @@
 Given /^a node of class "([^\"]*)"$/ do |klass|
-  @klass = @klass ? @klass.merge({klass => nil}) : {klass => nil}
+  @klass = klass
+end
+
+# And
+Given /^of class "([^\"]*)"$/ do |klass|
+  # we expect this to only be used in conjunction with other classes
+  fail unless @klass
+
+  if @klass.is_a? String
+    # FIXME: Arrays currently unsupported
+    @klass = {@klass => nil, klass => nil}
+  elsif @klass.is_a? Hash
+    @klass = @klass.merge({klass => nil})
+  end
 end
 
 Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
@@ -13,7 +26,25 @@ Given /^a node of class "([^\"]*)" with parameters:$/ do |klass, params|
       parameters[param['name']] = param['value']
     end
   end
-  @klass = @klass ? @klass.merge({klass => parameters}) : {klass => parameters}
+  @klass = {klass => parameters}
+end
+
+# And
+Given /^of class "([^\"]*)" with parameters:$/ do |klass, params|
+  # we expect this to only be used in conjunction with other classes
+  fail unless @klass
+
+  parameters = {}
+  params.hashes.each do |param|
+    parameters[param['name']] = param['value']
+  end
+
+  if @klass.is_a? String
+    # FIXME: Arrays currently unsupported
+    @klass = {@klass => nil, klass => parameters}
+  elsif @klass.is_a? Hash
+    @klass = @klass.merge({klass => parameters})
+  end
 end
 
 Given /^a node named "([^\"]*)"$/ do |name|
