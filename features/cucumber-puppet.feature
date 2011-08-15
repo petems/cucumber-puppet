@@ -40,7 +40,7 @@ Feature: cucumber-puppet command line options
     When I generate "world"
     And I generate "testcase"
     And I run cucumber-puppet with option "<option> features"
-    Then it should show "3 scenarios"
+    Then it should show "1 scenario"
 
     Examples:
       | option |
