@@ -64,7 +64,7 @@ class CucumberPuppet
     begin
       # Compile our catalog
       begin
-        @catalog = Puppet::Resource::Catalog.find(node.name, :use_node => node)
+        @catalog = Puppet::Resource::Catalog.indirection.find(node.name, :use_node => node)
       rescue NameError
         @catalog = Puppet::Node::Catalog.find(node.name, :use_node => node)
       end
@@ -75,7 +75,7 @@ class CucumberPuppet
       if detail.is_a?(XMLRPC::FaultException)
         $stderr.puts detail.message
       elsif detail.is_a?(Puppet::Error)
-        raise Puppet::Error detail.message
+        raise Puppet::Error, detail.message
       else
         $stderr.puts detail
       end

@@ -69,7 +69,7 @@ describe CucumberPuppet do
       Puppet::Node.stub(:new).and_return(@node)
       @catalog = mock("catalog")
       @catalog.stub(:resources).and_return([])
-      Puppet::Resource::Catalog.stub(:find).and_return(@catalog)
+      Puppet::Resource::Catalog.indirection.stub(:find).and_return(@catalog)
     end
 
     it 'parses the puppet config' do
@@ -92,12 +92,12 @@ describe CucumberPuppet do
     end
 
     it 'finds the node`s catalog' do
-      Puppet::Resource::Catalog.should_receive(:find).with(@node.name, :use_node => @node)
+      Puppet::Resource::Catalog.indirection.should_receive(:find).with(@node.name, :use_node => @node)
       c.compile_catalog
     end
 
     it 'falls back to puppet`s 0.24 interface in case of NameError' do
-      Puppet::Resource::Catalog.stub(:find).and_raise(NameError)
+      Puppet::Resource::Catalog.indirection.stub(:find).and_raise(NameError)
       Puppet::Node::Catalog.should_receive(:find).with(@node.name, :use_node => @node).and_return(@catalog)
       c.compile_catalog
     end
