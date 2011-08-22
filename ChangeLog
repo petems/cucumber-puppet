@@ -1,4 +1,7 @@
 0.3.3
+- add support for puppet 2.7
+- from Oliver Hookins <ohookins@gmail.com>
+  - add support for inclusion of multiple classes per node
 - from Matthaus Litteken <mlitteken@gmail.com>
   - add support to test for failed compilation
   - add support for booleans in parameterized classes
