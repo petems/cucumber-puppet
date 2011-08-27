@@ -1,6 +1,7 @@
 require 'rubygems'
 
 require 'cucumber/rake/task'
+require 'tmpdir'
 
 cucumber_opts = %w{--require features --format progress}
 Cucumber::Rake::Task.new do |t|
@@ -65,7 +66,23 @@ task :push => [:tests] do
   sh("gem push #{newest_filename}")
 end
 
-desc "Run test suite"
+desc "run test suite of puppet features"
+task :testsuite do
+  testsuite = Dir.mktmpdir
+  begin
+    Dir.chdir(testsuite)
+    basedir = File.dirname(__FILE__)
+
+    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen world")
+    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen testsuite --force")
+    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet --format progress features")
+  ensure
+    Dir.chdir(basedir)
+    FileUtils.remove_entry_secure testsuite
+  end
+end
+
+desc "run all tests"
 task :tests => [:spec, :cucumber, :puppet_version]
 
 desc "uninstall gem"

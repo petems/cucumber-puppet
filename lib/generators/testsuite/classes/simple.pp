@@ -1,0 +1,3 @@
+class simple {
+  file { "foo": }
+}

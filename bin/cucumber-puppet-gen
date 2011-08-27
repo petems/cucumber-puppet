@@ -65,6 +65,19 @@ module CucumberPuppetGenerators
     file('site.pp', 'site.pp', "#{destdir}/site.pp")
   end
 
+  class TestsuiteGenerator < Templater::Generator
+    def self.source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'testsuite')
+    end
+
+    desc <<-DESC
+      Generate a test suite for puppet features
+        cucumber-puppet-gen testsuite
+    DESC
+
+    glob!
+  end
+
   class WorldGenerator < Templater::Generator
     def source_root
       File.join(File.dirname(__FILE__), '..', 'lib', 'generators', 'world')
@@ -91,6 +104,7 @@ module CucumberPuppetGenerators
   add :feature, FeatureGenerator
   add :policy, PolicyGenerator
   add :testcase, TestcaseGenerator
+  add :testsuite, TestsuiteGenerator
   add :world, WorldGenerator
 
 end
