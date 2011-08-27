@@ -61,25 +61,11 @@ class CucumberPuppet
       node.merge(@facts)
     end
 
+    # Compile our catalog
     begin
-      # Compile our catalog
-      begin
-        @catalog = Puppet::Resource::Catalog.indirection.find(node.name, :use_node => node)
-      rescue NameError
-        @catalog = Puppet::Node::Catalog.find(node.name, :use_node => node)
-      end
-    rescue => detail
-      if Puppet[:trace]
-        puts detail.backtrace
-      end
-      if detail.is_a?(XMLRPC::FaultException)
-        $stderr.puts detail.message
-      elsif detail.is_a?(Puppet::Error)
-        raise Puppet::Error, detail.message
-      else
-        $stderr.puts detail
-      end
-      exit 1
+      @catalog = Puppet::Resource::Catalog.indirection.find(node.name, :use_node => node)
+    rescue NameError
+      @catalog = Puppet::Node::Catalog.find(node.name, :use_node => node)
     end
 
     # XXX could not find this in puppet
