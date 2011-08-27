@@ -41,6 +41,6 @@ Then /^all "(before|notify|require|subscribe)" should resolve$/ do |parameter|
 end
 
 Then /^compilation should succeed$/ do
-  fail("Catalog compilation failed.") unless
+  fail("Catalog compilation failed: #{@compile_error_msg}") unless
     @catalog.is_a?(Puppet::Resource::Catalog)
 end

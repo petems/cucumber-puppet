@@ -63,7 +63,8 @@ When /^I compile the catalog$/ do
   @compile_error = false
   begin
     compile_catalog
-  rescue
+  rescue => e
+    @compile_error_msg = e
     @compile_error = true
   end
 end
@@ -121,9 +122,9 @@ Then /^the [a-z]* should require "([^\"]*)"$/ do |res|
         break
       end
     end
-    fail unless found
+    fail("#{@resource} should require #{res}") unless found
   else
-    fail unless req.to_s == res
+    fail("#{@resource} should require #{res}") unless req.to_s == res
   end
   steps %Q{
     Then the catalog should contain "#{res}"
@@ -131,7 +132,7 @@ Then /^the [a-z]* should require "([^\"]*)"$/ do |res|
 end
 
 Then /^the catalog should contain "([^\"]*)"$/ do |res|
-  fail unless resource(res)
+  fail("#{res} not in catalog") unless resource(res)
 end
 
 Then /^the state should be "([^\"]*)"$/ do |state|
@@ -140,5 +141,5 @@ end
 
 Then /^there should be a resource "([^\"]*)"$/ do |res|
   @resource = resource(res)
-  fail unless @resource
+  fail("#{res} not in catalog") unless @resource
 end
