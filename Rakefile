@@ -83,7 +83,7 @@ task :testsuite do
 end
 
 desc "run all tests"
-task :tests => [:spec, :cucumber, :puppet_version]
+task :tests => [:spec, :cucumber, :testsuite, :puppet_version]
 
 desc "uninstall gem"
 task :uninstall do
