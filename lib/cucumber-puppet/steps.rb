@@ -15,7 +15,8 @@ When /^I compile its catalog$/ do
   @compile_error = false
   begin
     compile_catalog(@node)
-  rescue
+  rescue => e
+    @compile_error_msg = e
     @compile_error = true
   end
 end
