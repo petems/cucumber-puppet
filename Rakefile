@@ -7,9 +7,10 @@ cucumber_opts = %w{--require features --format progress}
 Cucumber::Rake::Task.new do |t|
   t.cucumber_opts = [cucumber_opts, '--tags', '~@puppet_version']
 end
-Cucumber::Rake::Task.new("puppet_version",
-  "Run Cucumber testcase against various puppet versions") do |t|
-  t.cucumber_opts = [cucumber_opts, '--tags',' @puppet_version']
+# bypass bundler to allow loading of varying puppet versions
+desc "Run Cucumber testcase against various puppet versions"
+task :puppet_version do
+  sh "cucumber --require features --format progress --tags  @puppet_version"
 end
 
 require 'rspec/core/rake_task'

@@ -12,6 +12,13 @@ Given /^an initialized directory tree$/ do
 end
 
 Given /^an initialized directory tree for puppet version "([^\"]*)"$/ do |version|
+  begin
+    Gem::Specification.find_by_name 'puppet', version
+  rescue Gem::LoadError
+    require 'rubygems/dependency_installer'
+    inst = Gem::DependencyInstaller.new
+    inst.install 'puppet', version
+  end
   steps %Q{
     Given an uninitialized directory tree
     When I generate "world" for puppet version "#{version}"

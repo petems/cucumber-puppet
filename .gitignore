@@ -1,4 +1,5 @@
 *.swp
+Gemfile.lock
 man/*.1
 man/*.7
 man/*.html
