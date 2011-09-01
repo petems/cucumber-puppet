@@ -74,8 +74,8 @@ task :testsuite do
     Dir.chdir(testsuite)
     basedir = File.dirname(__FILE__)
 
-    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen world")
-    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen testsuite --force")
+    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen world > /dev/null")
+    sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet-gen testsuite --force > /dev/null")
     sh("ruby -I#{basedir}/lib #{basedir}/bin/cucumber-puppet --format progress features")
   ensure
     Dir.chdir(basedir)
