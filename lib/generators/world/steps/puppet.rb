@@ -92,15 +92,17 @@ Then /^the [a-z]* should have an? "([^\"]*)" of "([^\"]*)"$/ do |property, value
       value = value.split
     end
 
-    prop = @resource[property]
+    prop = []
+    @resource[property].each do |p|
+      prop << p.to_s
+    end
   elsif @resource[property].is_a?(String)
     prop = @resource[property]
   else
     fail "Class #{@resource[property].class} not supported. Please modify steps to accomodate."
   end
 
-  fail "Resource #{@resource} had #{property}='#{@resource[property] ? @resource[property] : "<empty>"}', not '#{value}'" \
-    unless prop == value
+  fail "Resource #{@resource} had #{property}='#{prop ? prop.to_s : "<empty>"}', not '#{value}'" unless prop == value
 end
 
 Then /^the [a-z]* should notify "([^\"]*)"$/ do |res|
