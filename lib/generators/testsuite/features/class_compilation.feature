@@ -4,7 +4,6 @@ Feature: class compilation
     Given a node of class "simple"
     When I compile the catalog
     Then compilation should succeed
-    Then all resource dependencies should resolve
     Then there should be a resource "File[foo]"
 
   Scenario: compile multiple classes
@@ -12,7 +11,6 @@ Feature: class compilation
     And of class "multi::two"
     When I compile the catalog
     Then compilation should succeed
-    Then all resource dependencies should resolve
     Then there should be a resource "File[one]"
     And there should be a resource "File[two]"
 
@@ -22,7 +20,6 @@ Feature: class compilation
       | filename | foo   |
     When I compile the catalog
     Then compilation should succeed
-    Then all resource dependencies should resolve
     Then there should be a resource "File[foo]"
 
   Scenario: compile multiple classes with parameters
@@ -34,6 +31,5 @@ Feature: class compilation
       | filename | bar   |
     When I compile the catalog
     Then compilation should succeed
-    Then all resource dependencies should resolve
     Then there should be a resource "File[foo]"
     And there should be a resource "File[bar]"

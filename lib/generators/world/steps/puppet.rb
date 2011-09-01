@@ -143,3 +143,8 @@ Then /^there should be a resource "([^\"]*)"$/ do |res|
   @resource = resource(res)
   fail("#{res} not in catalog") unless @resource
 end
+
+Then /^there should be no resource "([^\"]*)"$/ do |res|
+  @resource = resource(res)
+  fail("#{@resource} in catalog although it shouldn't be") if @resource
+end
