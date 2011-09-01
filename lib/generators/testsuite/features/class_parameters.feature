@@ -4,7 +4,7 @@ Feature: class parameters
     Given a node of class "parameterized::three" with parameters:
       | name         | value     |
       | include_file | <boolean> |
-    When I compile the catalog
+    When I compile its catalog
     Then compilation should succeed
     Then there should be <include> resource "File[foo]"
 

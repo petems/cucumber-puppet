@@ -60,13 +60,11 @@ Given /^it is a virtual node$/ do
 end
 
 When /^I compile the catalog$/ do
-  @compile_error = false
-  begin
-    compile_catalog
-  rescue => e
-    @compile_error_msg = e
-    @compile_error = true
-  end
+  steps %Q{ When I compile its catalog }
+end
+
+When /^I try to compile the catalog$/ do
+  steps %Q{ When I try to compile its catalog }
 end
 
 Then /^compilation should fail$/ do

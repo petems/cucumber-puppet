@@ -1,0 +1,66 @@
+--- !ruby/object:Puppet::Node
+  classes:
+    - nonexistent
+  environment: &id001 production
+  expiration: 2011-06-22 16:18:11.911933 +02:00
+  name: testnode
+  parameters:
+    physicalprocessorcount: "1"
+    netmask: 255.255.255.0
+    processorcount: "2"
+    swapfree: 4.28 GB
+    kernel: Linux
+    serialize: 13
+    uniqueid: ffffffff
+    fqdn: testnode.com
+    operatingsystemrelease: "9.10"
+    lsbmajdistrelease: "9"
+    clientversion: 0.25.5
+    ipaddress: 192.168.217.120
+    virtual: physical
+    memorysize: 1.95 GB
+    is_virtual: "false"
+    "--- !ruby/sym _timestamp": Wed Jun 22 15:48:13 +0200 2011
+    ps: ps -ef
+    hardwaremodel: i686
+    kernelrelease: 2.6.31-22-generic
+    rubysitedir: /usr/local/lib/site_ruby/1.8
+    netmask_eth0: 255.255.255.0
+    macaddress_eth0: 00:00:00:00:00:00
+    domain: com
+    timezone: CEST
+    id: root
+    uptime_days: "30"
+    memoryfree: 1.58 GB
+    manufacturer: "FUJITSU                         "
+    lsbdistrelease: "9.10"
+    selinux: "false"
+    processor0: Pentium(R) Dual-Core  CPU      E5500  @ 2.80GHz
+    hardwareisa: unknown
+    uptime_hours: "726"
+    type: Mini Tower
+    interfaces: eth0
+    path: /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+    processor1: Pentium(R) Dual-Core  CPU      E5500  @ 2.80GHz
+    lsbdistdescription: Ubuntu 9.10
+    kernelversion: 2.6.31
+    lsbdistcodename: karmic
+    environment: *id001
+    puppetversion: 0.25.5
+    uptime: 30 days
+    hostname: testnode
+    swapsize: 4.29 GB
+    operatingsystem: Ubuntu
+    kernelmajversion: "2.6"
+    macaddress: 00:00:00:00:00:00
+    ipaddress_eth0: 127.0.1.1
+    serialnumber: "YL6L032827          "
+    facterversion: 1.5.7
+    productname: "ESPRIMO P5731                 "
+    uptime_seconds: "2615154"
+    lsbdistid: Ubuntu
+    architecture: i386
+    network_eth0: 192.168.217.0
+    home_is: nfs
+    rubyversion: 1.8.7
+  time: 2011-06-22 15:48:11.879382 +02:00

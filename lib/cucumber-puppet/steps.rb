@@ -12,6 +12,10 @@ Given /^I use storeconfigs$/ do
 end
 
 When /^I compile its catalog$/ do
+  compile_catalog(@node)
+end
+
+When /^I try to compile its catalog$/ do
   @compile_error = false
   begin
     compile_catalog(@node)

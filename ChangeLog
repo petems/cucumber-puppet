@@ -1,3 +1,8 @@
+0.4.0
+- improve support for puppet manifest debugging by letting catalog compilation
+  report a proper error message again; test for compilation failure with the
+  new step "When I try to compile its catalog"
+
 0.3.3
 - add support for puppet 2.7
 - from Oliver Hookins <ohookins@gmail.com>
