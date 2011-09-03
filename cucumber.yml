@@ -1,0 +1,1 @@
+guard: --format progress --strict --tags ~@puppet_version

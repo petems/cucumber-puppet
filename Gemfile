@@ -1,3 +1,8 @@
-source "http://rubygems.org"
+source :rubygems
 
 gemspec
+
+gem 'guard-cucumber'
+gem 'guard-rspec'
+gem 'libnotify'
+gem 'rb-inotify'

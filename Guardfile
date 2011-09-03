@@ -1,15 +1,19 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
-
+# development testsuite
 group 'bdd' do
-  guard 'cucumber' do
+  guard 'cucumber', :cli => '--profile guard' do
     watch(%r{^features/.+\.feature$})
-    watch(%r{^features/support/.+$})     { 'features' }
-    watch(%r{^features/steps/(.+)\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
+    watch(%r{^features/support/.+$})     { 'features/' }
+    watch(%r{^features/steps/(.+)\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features/' }
+  end
+
+  guard 'rspec', :version => 2 do
+    watch(%r{^spec/.+_spec\.rb$})
+    watch(%r{^lib/(.+)\.rb$})            { |m| Dir["spec/#{m[1]}_spec.rb"][0] || 'spec/' }
+    watch('spec/spec_helper.rb')         { 'spec/' }
   end
 end
 
-# testsuite
+# puppet step testsuite
 require 'guard/guard'
 require 'tmpdir'
 

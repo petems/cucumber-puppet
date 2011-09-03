@@ -1,3 +1,1 @@
-$LOAD_PATH << File.dirname(__FILE__) + '/../../'
-
-require 'rubygems'
+require 'cucumber-puppet'
