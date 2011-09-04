@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.author = "Nikolay Sturm"
   s.description = "cucumber-puppet is a tool for behavioral testing of Puppet catalogs"
@@ -30,7 +30,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "facter", "1.5.9"
   s.add_development_dependency "ronn"
-  s.add_development_dependency "rspec-core"
-  s.add_development_dependency "rspec-expectations"
-  s.add_development_dependency "rspec-mocks"
+  s.add_development_dependency "rspec"
 end
