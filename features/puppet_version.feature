@@ -24,6 +24,8 @@ Feature: Test cucumber-puppet against various Puppet releases
       | 2.6.2   |
       | 2.6.3   |
       | 2.6.4   |
+      | 2.6.11  |
+      | 2.6.12  |
 
   @puppet_version
   Scenario Outline: Test specific Puppet version
@@ -38,5 +40,7 @@ Feature: Test cucumber-puppet against various Puppet releases
       | 2.6.7   |
       | 2.6.8   |
       | 2.6.9   |
+      | 2.6.11  |
+      | 2.6.12  |
       | 2.7.1   |
       | 2.7.3   |
