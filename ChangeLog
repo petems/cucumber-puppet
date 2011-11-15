@@ -1,3 +1,6 @@
+0.3.6
+- unbreak with puppet 2.7.6
+
 0.3.4
 - improve support for puppet manifest debugging by letting catalog compilation
   report a proper error message again; test for compilation failure with the
