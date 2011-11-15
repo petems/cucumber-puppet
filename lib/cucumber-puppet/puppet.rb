@@ -1,5 +1,5 @@
 require 'puppet'
-require 'puppet/network/client'
+#require 'puppet/network/client'
 
 # A class for accessing Puppet's internal state regarding a certain node or
 # class.
