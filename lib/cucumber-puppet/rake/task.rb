@@ -14,6 +14,8 @@
 #   end
 
 class CucumberPuppetRakeTask
+  include Rake::DSL
+
   attr_accessor :cucumber_opts
 
   # Extra options to pass to cucumber via cucumber-puppet.
