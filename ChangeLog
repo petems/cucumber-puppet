@@ -1,3 +1,6 @@
+0.3.7
+- silence a rake warning with newer rake
+
 0.3.6
 - from Bernd Ahlers <bernd@tuneafish.de>
   unbreak with puppet 2.7.6
