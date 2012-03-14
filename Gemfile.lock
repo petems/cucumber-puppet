@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cucumber-puppet (0.3.6)
+    cucumber-puppet (0.3.7)
       cucumber
       gem-man
       templater
