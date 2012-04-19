@@ -69,7 +69,7 @@ class CucumberPuppet
     # XXX could not find this in puppet
     catalog_resources.each do |resource|
       next unless resource[:alias]
-      resource[:alias].each do |a|
+      resource[:alias].each_line do |a|
         # "foo" -> "Package[foo]"
         @aliases["#{resource.type}[#{a}]"] = resource
       end
