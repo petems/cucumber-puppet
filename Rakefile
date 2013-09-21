@@ -58,6 +58,8 @@ task :tests => [:spec, :cucumber, :testsuite]
 
 task :default => :tests
 
+task :test => :tests
+
 desc "uninstall gem"
 task :uninstall do
   sh("gem uninstall -x cucumber-puppet")
