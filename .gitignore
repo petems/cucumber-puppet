@@ -3,3 +3,15 @@ man/*.1
 man/*.7
 man/*.html
 pkg
+*.gem
+*.rbc
+*~
+*.swp
+*.swo
+.bundle
+.rvmrc
+.ruby-version
+Gemfile.lock
+doc/*
+log/*
+pkg/*

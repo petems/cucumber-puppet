@@ -23,12 +23,13 @@ Gem::Specification.new do |s|
   s.name = "cucumber-puppet"
   s.summary = "Puppet catalog testing with Cucumber"
 
-  s.add_runtime_dependency "cucumber"
-  s.add_runtime_dependency "gem-man"
-  s.add_runtime_dependency "templater"
+  s.add_runtime_dependency "cucumber", "1.0.2"
+  s.add_runtime_dependency "gem-man", "0.3.0"
+  s.add_runtime_dependency "templater", "1.0.0"
 
   s.add_development_dependency "facter", "1.5.9"
-  s.add_development_dependency "puppet"
-  s.add_development_dependency "ronn"
-  s.add_development_dependency "rspec"
+  s.add_development_dependency "puppet", "2.7.3"
+  s.add_development_dependency "ronn", "0.7.3"
+  s.add_development_dependency "rspec", "2.6.0"
+  s.add_development_dependency "rake", "10.1.0"
 end

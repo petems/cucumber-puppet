@@ -7,11 +7,6 @@ cucumber_opts = %w{--require features --format progress}
 Cucumber::Rake::Task.new do |t|
   t.cucumber_opts = [cucumber_opts, '--tags', '~@puppet_version']
 end
-# bypass bundler to allow loading of varying puppet versions
-desc "Run Cucumber testcase against various puppet versions"
-task :puppet_version do
-  sh "cucumber --require features --format progress --tags  @puppet_version"
-end
 
 require 'rspec/core/rake_task'
 
@@ -84,7 +79,9 @@ task :testsuite do
 end
 
 desc "run all tests"
-task :tests => [:spec, :cucumber, :testsuite, :puppet_version]
+task :tests => [:spec, :cucumber, :testsuite]
+
+task :default => :tests
 
 desc "uninstall gem"
 task :uninstall do
