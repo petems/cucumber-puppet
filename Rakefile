@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'appraisal'
 
 require 'cucumber/rake/task'
 require 'tmpdir'
@@ -36,32 +37,6 @@ task :build_docs do
   end
 end
 
-desc "install gem"
-task :install do
-  filenames = Dir.glob("pkg/*.gem")
-  filenames_with_times = filenames.map do |filename|
-    [filename, File.mtime(filename)]
-  end
-
-  newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
-  newest_filename = newest.first
-
-  sh("gem install #{newest_filename}")
-end
-
-desc "push gem"
-task :push => [:tests] do
-  filenames = Dir.glob("pkg/*.gem")
-  filenames_with_times = filenames.map do |filename|
-    [filename, File.mtime(filename)]
-  end
-
-  newest = filenames_with_times.sort_by { |tuple| tuple.last }.last
-  newest_filename = newest.first
-
-  sh("gem push #{newest_filename}")
-end
-
 desc "run test suite of puppet features"
 task :testsuite do
   testsuite = Dir.mktmpdir
@@ -82,6 +57,8 @@ desc "run all tests"
 task :tests => [:spec, :cucumber, :testsuite]
 
 task :default => :tests
+
+task :test => :tests
 
 desc "uninstall gem"
 task :uninstall do

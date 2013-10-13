@@ -15,3 +15,4 @@ Gemfile.lock
 doc/*
 log/*
 pkg/*
+gemfiles/*.lock
