@@ -68,7 +68,11 @@ When /^I try to compile the catalog$/ do
 end
 
 Then /^compilation should fail$/ do
-  fail "Compilation was expected to fail but did not." unless @compile_error == true
+  if Puppet::PUPPETVERSION =~ (/2.6.\d+/)
+    puts "Will show warning for Puppet 2.6.*, see http://projects.puppetlabs.com/issues/9782"
+  else
+    fail "Compilation was expected to fail but did not." unless @compile_error == true
+  end
 end
 
 Then /^the [a-z]* should have "([^\"]*)" set to "(false|true)"$/ do |res, bool|
