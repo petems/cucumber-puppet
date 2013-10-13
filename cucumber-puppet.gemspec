@@ -23,8 +23,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "templater", "1.0.0"
 
   gem.add_development_dependency "facter", "1.5.9"
-  gem.add_development_dependency "puppet", "2.7.3"
   gem.add_development_dependency "ronn", "0.7.3"
   gem.add_development_dependency "rspec", "2.6.0"
   gem.add_development_dependency "rake", "10.1.0"
+  gem.add_development_dependency "appraisal"
 end
