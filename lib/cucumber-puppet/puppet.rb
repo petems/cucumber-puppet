@@ -5,6 +5,9 @@ class String
   unless "".respond_to?(:lines)
     alias_method :lines, :to_a
   end
+  unless "".respond_to?(:each)
+    alias_method :each, :each_line
+  end
 end
 
 # A class for accessing Puppet's internal state regarding a certain node or
