@@ -1,5 +1,12 @@
 require 'puppet'
 
+#Backwards compatibility...
+class String
+  unless "".respond_to?(:lines)
+    alias_method :lines, :to_a
+  end
+end
+
 # A class for accessing Puppet's internal state regarding a certain node or
 # class.
 class CucumberPuppet
@@ -37,7 +44,7 @@ class CucumberPuppet
   def klass=(klass)
     if klass.class == String
       # XXX sth like klass.split(/,/) and remove whitespace
-      @klass = klass.split(/,/)
+      @klass = klass.lines
     elsif klass.class == Hash
       @klass = klass
     else
@@ -74,7 +81,7 @@ class CucumberPuppet
 
     catalog_resources.each do |resource|
       next unless resource[:alias]
-      resource[:alias].lines.each do |a|
+      resource[:alias].each do |a|
         # "foo" -> "Package[foo]"
         @aliases["#{resource.type}[#{a}]"] = resource
       end
