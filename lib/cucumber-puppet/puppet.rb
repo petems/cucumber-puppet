@@ -37,7 +37,7 @@ class CucumberPuppet
   def klass=(klass)
     if klass.class == String
       # XXX sth like klass.split(/,/) and remove whitespace
-      @klass = klass.to_a
+      @klass = klass.split(/,/)
     elsif klass.class == Hash
       @klass = klass
     else
@@ -71,9 +71,10 @@ class CucumberPuppet
     end
 
     # XXX could not find this in puppet
+
     catalog_resources.each do |resource|
       next unless resource[:alias]
-      resource[:alias].each do |a|
+      resource[:alias].lines.each do |a|
         # "foo" -> "Package[foo]"
         @aliases["#{resource.type}[#{a}]"] = resource
       end
