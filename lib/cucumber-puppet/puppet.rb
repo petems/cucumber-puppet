@@ -48,7 +48,11 @@ class CucumberPuppet
   # Compile catalog for configured testnode.
   def compile_catalog( node = nil )
     Puppet.settings.handlearg("--confdir", @puppetcfg['confdir'])
-    Puppet.parse_config
+    begin
+      Puppet.initialize_settings unless Puppet.settings.send(:global_defaults_initialized?)
+    rescue NameError
+      Puppet.parse_config
+    end
     # reset confdir in case it got overwritten
     @puppetcfg.each do |option,value|
       Puppet.settings.handlearg("--#{option}", value)
