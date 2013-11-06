@@ -1,6 +1,7 @@
 rvm:
   - 1.8.7
   - 1.9.3
+  - 2.0.0
 script: "bundle exec rake tests"
 gemfile:
   - gemfiles/2.6.18.gemfile
@@ -9,3 +10,9 @@ allow_failures:
   - gemfiles/3.0.2.gemfile
   - gemfiles/3.1.1.gemfile
   - gemfiles/3.2.4.gemfile
+matrix:
+  exclude:
+    - rvm: 1.9.3
+      gemfile: gemfiles/2.6.18.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/2.6.18.gemfile
